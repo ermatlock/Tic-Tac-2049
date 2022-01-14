@@ -33,7 +33,7 @@ function playNumber(player, number) {
 		if (number === positions[i]) {
 			splice(i, 1);
 			player.push(number);
-			checkEach(player);			
+			checkEach(player);
 		}
 	}
 }
