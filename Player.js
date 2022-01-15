@@ -4,8 +4,5 @@ class Player {
 		this.token = token
 		this.choices = []
 		this.wins = 0;
-
 	}
 }
-
-module.exports = Player
