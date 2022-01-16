@@ -2,20 +2,33 @@ class Game {
 	constructor(player1, player2) {
 		this.player1 = new Player(player1, '🟢');
 		this.player2 = new Player(player2, '🔴');
-		this.positions = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+		this.positions = ['a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3'];
 		this.currentPlayer = 1;
 
 	}
 
+	resetGame() {
+		this.player1.choices = []
+		this.player2.choices = []
+		this.positions = ['a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3'];
+		this.currentPlayer = 1;		
+	}
+
+	// player1.choices = [];
+	// player2.choices = [];
+	// currentGame.positions = ['a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3'];
+	// currentGame.currentPlayer = 1
+	// console.log(player1.choices + player2.choices + currentGame.positions + currentGame.currentPlayer)
+
 	// checkEach(player) {
-	// 	this.checkForWin(player, [1, 2, 3])
-	// 	this.checkForWin(player, [4, 5, 6])
-	// 	this.checkForWin(player, [7, 8, 9])
-	// 	this.checkForWin(player, [1, 4, 7])
-	// 	this.checkForWin(player, [2, 5, 8])
-	// 	this.checkForWin(player, [3, 6, 9])
-	// 	this.checkForWin(player, [1, 5, 9])
-	// 	this.checkForWin(player, [3, 5, 7])
+	// 	this.checkForWin(player, ['a1', 'a2', 'a3'])
+	// 	this.checkForWin(player, ['b1', 'b2', 'b3'])
+	// 	this.checkForWin(player, ['c1', 'c2', 'c3'])
+	// 	this.checkForWin(player, ['a1', 'b1', 'c1'])
+	// 	this.checkForWin(player, ['a2', 'b2', 'c2'])
+	// 	this.checkForWin(player, ['a3', 'b3', 'c3'])
+	// 	this.checkForWin(player, ['a1', 'b2', 'c3'])
+	// 	this.checkForWin(player, ['c1', 'b2', 'a3'])
 	// }
 	//
 	// checkForWin(player, winState) {
