@@ -20,7 +20,10 @@ c3.addEventListener('click', function () {takeTurn(9)});
 
 
 function takeTurn(position) {
-	console.log(currentGame.currentPlayer)
+	console.log('thisisthecurrentplayer ' + currentGame.currentPlayer)
+	if (currentGame.positions.length === 9) {
+		choosePosition(player1, position);
+	}
 	if (currentGame.currentPlayer === 1) {
 		console.log('takeTurn player1')
 		choosePosition(player1, position);
@@ -38,7 +41,7 @@ function choosePosition(player, position) {
 			currentGame.positions.splice(i, 1);
 			player.choices.push(position);
 			checkEach(player);
-			switchPlayers();
+			switchPlayers()
 		}
 	}
 }
@@ -75,17 +78,28 @@ function checkForWin(player, winState) {
 		}
 	}
 	if (matches.length === 3) {
-		console.log('winning' + matches)
+		console.log('winning ' + matches)
 		player.wins ++
 		console.log(`${player.id} WON!`)
+		nextGame();
 		return `${player.id} WON!`;
 	}
 	if (currentGame.positions.length === 0) {
-		console.log('player1' + player1.choices)
-		console.log('player2' + player2.choices)
-		console.log('DRAW')
-		return 'DRAW'
+		console.log('player1 ' + player1.choices)
+		console.log('player2 ' + player2.choices)
+		console.log('DRAW!')
+		nextGame();
+		return 'DRAW!'
 	}
+}
+
+function nextGame() {
+	console.log('nextGame')
+	player1.choices = [];
+	player2.choices = [];
+	currentGame.positions = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+	currentGame.currentPlayer = 1
+	console.log(currentGame.currentPlayer)
 }
 
 
