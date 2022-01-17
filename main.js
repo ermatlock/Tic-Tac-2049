@@ -1,36 +1,22 @@
-var a1 = document.getElementById('a1');
-var a2 = document.getElementById('a2');
-var a3 = document.getElementById('a3');
-var b1 = document.getElementById('b1');
-var b2 = document.getElementById('b2');
-var b3 = document.getElementById('b3');
-var c1 = document.getElementById('c1');
-var c2 = document.getElementById('c2');
-var c3 = document.getElementById('c3');
 var gameInfo = document.getElementById('gameInfo')
 var player1Wins = document.getElementById('player1Wins')
 var player2Wins = document.getElementById('player2Wins')
-
-a1.addEventListener('click', function () {takeTurn('a1')});
-a2.addEventListener('click', function () {takeTurn('a2')});
-a3.addEventListener('click', function () {takeTurn('a3')});
-b1.addEventListener('click', function () {takeTurn('b1')});
-b2.addEventListener('click', function () {takeTurn('b2')});
-b3.addEventListener('click', function () {takeTurn('b3')});
-c1.addEventListener('click', function () {takeTurn('c1')});
-c2.addEventListener('click', function () {takeTurn('c2')});
-c3.addEventListener('click', function () {takeTurn('c3')});
+var ticTacBox = document.getElementById('ticTacBox')
 
 
-function takeTurn(position) {
+ticTacBox.addEventListener('click', function (e) {takeTurn(e)})
+
+
+function takeTurn(e) {
+	console.log(e.target.id)
 	console.log('current player ' + currentGame.currentPlayer);
-	console.log('current position ' + currentGame.currentPlayer);
+	console.log('current position ' + e.target.id);
 	if (currentGame.currentPlayer === 1) {
 		gameInfo.innerText = 'Turn: Player 2'
-		choosePosition(player1, position);
+		choosePosition(player1, e.target.id);
 	} else if (currentGame.currentPlayer === 2) {
 		gameInfo.innerText = 'Turn: Player 1'
-		choosePosition(player2, position);
+		choosePosition(player2, e.target.id);
 	}
 }
 
