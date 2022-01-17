@@ -65,8 +65,9 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
-  height: 26%;
+  justify-content: space-evenly;
+  height: 43%;
+  margin-top: 4%;
 }
 
 .center-box {
@@ -80,7 +81,7 @@ main {
 
 .tic-tac-box {
   /* width: 50%; */
-  height: 60%;
+  /* height: 60%; */
   display: grid;
   grid-template-columns: repeat(3, 20vh [col-start]);
   grid-template-rows: repeat(3, 20vh [row-start]);
@@ -92,20 +93,26 @@ main {
 	width: 100%;
 	height: 100%;
 	border-style: solid;
-	border-width: 5px;
-	border-color: rgba( 120, 251, 253, 80%);
+	/* border-width: 5px; */
+	border-color: rgb(0 249 255 / 72%);
 	justify-content: center;
 	align-items: center;
-	font-size: 8vh;
+	font-size: 12vh;
+	color: #b2f4ff;
+	background-color: rgb(50 111 238 / 43%);
 }
 
+.grid:hover {
+  background-color: rgba( 50, 111, 238, 70%);
+
 }
-.a-1 {
 
-
+.button-box {
+  height: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
-.button-box {height: 20%;display: flex;justify-content: center;align-items: center;}
 
 button {
   height: 8vh;
