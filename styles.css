@@ -40,19 +40,14 @@ p, h1, h2, h3, h4, h5, h6 {
 /* ~~~~~~~~~~~~~~~END RESET~~~~~~~~~~~~~~~ */
 
 /* ~~~~~~~~~~~~~~~~LAYOUT~~~~~~~~~~~~~~~~~ */
-html {
-  background: url(assets/images/4910984.gif) no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
 main {
 	display: flex;
   justify-content: center;
   /* align-items: center; */
-
+  background: repeating-linear-gradient(transparent, transparent 2px, black 3px, black 3px), url(assets/images/4910984.gif);
+  background-size: auto 100%;
+  background-position: center center;
+  opacity: 1;
 }
 
 .player-box {
@@ -126,12 +121,16 @@ button {
   border-color: rgb(0 249 255 / 72%);
   background-color: rgba( 50, 111, 238, 70%);
   border-style: solid;
+  color: #65f7ff;
+  text-shadow: 3px 3px 3px #4d4d4d, 1px 4px 5px #aeaeae;
 
 }
 
 button:hover {
+
   background-color: rgb(123 166 255 / 73%);
   box-shadow: 0 0 5px 5px #fff;
+  color: white;
 }
 
 .game-title {
