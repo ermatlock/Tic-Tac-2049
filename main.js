@@ -1,11 +1,40 @@
-var gameInfo = document.getElementById("gameInfo");
-var player1Wins = document.getElementById("player1Wins");
-var player2Wins = document.getElementById("player2Wins");
-var ticTacBox = document.getElementById("ticTacBox");
+/*~~~~~~~~~~~~~~QUERY SELECTORS~~~~~~~~~~~~~~~~~~*/
+const gameInfo = document.getElementById('gameInfo');
+const player1Wins = document.getElementById('player1Wins');
+const player2Wins = document.getElementById('player2Wins');
+const ticTacBox = document.getElementById('ticTacBox');
+const playButton = document.getElementById('playButton')
 
-ticTacBox.addEventListener("click", function(e) {
+/*~~~~~~~~~~~~~~EVENT LISTENERS~~~~~~~~~~~~~~~~~~*/
+ticTacBox.addEventListener('click', function(e) {
 	takeTurn(e);
 });
+playButton.addEventListener('click', playMusic)
+
+/*~~~~~~~~~~~~~~~~~~~~AUDIO~~~~~~~~~~~~~~~~~~~~~~*/
+var audioElement = new Audio('./assets/music/12-Seeking-Truth.mp3');
+
+/*~~~~~~~~~~~~~~~~~~FUNCTIONS~~~~~~~~~~~~~~~~~~~~*/
+function playAudio() {
+	audioElement.play();
+	audioElement.loop=true;
+}
+
+function pauseAudio() {
+	audioElement.pause();
+}
+
+function playMusic() {
+	if (playButtonStatus === false) {
+		playButton.innerText = "MUSIC ON";
+		playButtonStatus = true;
+		playAudio()
+	} else {
+		playButton.innerText = "MUSIC OFF";
+		playButtonStatus = false;
+		pauseAudio()
+	}
+}
 
 function takeTurn(e) {
 	console.log(e.target.id);
@@ -39,7 +68,7 @@ function choosePosition(player, position) {
 function placeToken(player, position) {
 	console.log(`Place Token ${player.token} at ${position}`);
 	console.log(eval(position));
-	eval(position)["innerText"] = player.token;
+	eval(position)["innerHTML"] = `<h1>${player.token}</h1>`
 }
 
 function switchPlayers() {
@@ -78,39 +107,7 @@ function checkForWin(player, winState) {
 		player.wins++;
 		gameInfo.innerText = `Player ${player.id} WON!`;
 		ticTacBox.classList.add("block-clicks");
-		setTimeout(function() {
-			ticTacBox.classList.remove("block-clicks");
-		}, 2500);
-		setTimeout(function() {
-			currentGame.resetGame();
-		}, 2500);
-		setTimeout(function() {
-			clearBoard();
-		}, 2500);
-		setTimeout(function() {
-			updateWins();
-		}, 2500);
-		setTimeout(function() {
-			switchPlayers();
-		}, 2500);
-	} else if (currentGame.positions.length === 0 && matches.length !== 3) {
-		gameInfo.innerText = "DRAW!";
-		ticTacBox.classList.add("block-clicks");
-		setTimeout(function() {
-			ticTacBox.classList.remove("block-clicks");
-		}, 2500);
-		setTimeout(function() {
-			currentGame.resetGame();
-		}, 2500);
-		setTimeout(function() {
-			clearBoard();
-		}, 2500);
-		setTimeout(function() {
-			updateWins();
-		}, 2500);
-		setTimeout(function() {
-			switchPlayers();
-		}, 2500);
+		nextGame()
 	}
 }
 
@@ -132,11 +129,12 @@ function updateWins() {
 	player2Wins.innerText = player2.wins;
 }
 
-// function nextGame() {
-// 	console.log('nextGame')
-// 	// player1.choices = [];
-// 	// player2.choices = [];
-// 	// currentGame.positions = ['a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3'];
-// 	// currentGame.currentPlayer = 1
-// 	// console.log(player1.choices + player2.choices + currentGame.positions + currentGame.currentPlayer)
-// }
+function nextGame() {
+	setTimeout(function() {
+		ticTacBox.classList.remove("block-clicks");
+		currentGame.resetGame();
+		clearBoard();
+		updateWins();
+		switchPlayers();
+	}, 2500);
+}
