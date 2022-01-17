@@ -75,6 +75,8 @@ function checkForWin(player, winState) {
 	if (matches.length === 3) {
 		player.wins ++
 		gameInfo.innerText = `Player ${player.id} WON!`;
+		ticTacBox.classList.add('block-clicks')
+		setTimeout(function() {ticTacBox.classList.remove('block-clicks')}, 2500);
 		setTimeout(function() {currentGame.resetGame()}, 2500);
 		setTimeout(function() {clearBoard()}, 2500);
 		setTimeout(function() {updateWins()}, 2500);
@@ -83,6 +85,8 @@ function checkForWin(player, winState) {
 	}
 	else if (currentGame.positions.length === 0 && matches.length !== 3) {
 		gameInfo.innerText = 'DRAW!'
+		ticTacBox.classList.add('block-clicks')
+		setTimeout(function() {ticTacBox.classList.remove('block-clicks')}, 2500);
 		setTimeout(function() {currentGame.resetGame()}, 2500);
 		setTimeout(function() {clearBoard()}, 2500);
 		setTimeout(function() {updateWins()}, 2500);
