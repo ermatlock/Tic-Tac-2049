@@ -1,53 +1,74 @@
 <!doctype html>
 
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Tic-Tac-Toe</title>
-
-  <link rel="stylesheet" href="./styles.css?v=1.0">
+	<title>Tic-Tac-Toe</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="./styles.css">
 
 </head>
 
 <body>
 	<main>
-		<section class="player p-1" id=p1>
-			<h1>Player 1</h1>
-		</section>		
-		<section class="tic-tac-box" id="ticTacBox">
-			<div class="a-1" id="a1">
-				#
-			</div>
-			<div class="a-2" id="a2">
-				#
-			</div>
-			<div class="a-3" id="a3">
-				#
-			</div>
-			<div class="b-1" id="b1">
-				#
-			</div>
-			<div class="b-2" id="b2">
-				#
-			</div>
-			<div class="b-3" id="b3">
-				#
-			</div>
-			<div class="c-1" id="c1">
-				#
-			</div>
-			<div class="c-2" id="c2">
-				#
-			</div>
-			<div class="c-3" id="c3">
-				#
-			</div>
+		<section class="player-box" id=p1>
+      <div class="player">
+        <h1>Player 1</h1>
+        <h1>X</h1>
+        <h3>WINS:</h3>
+        <h2>0</h2>
+      </div>
 		</section>
-		<section class="player p-2" id=p2>
-			<h1>Player 2</h1>
-		</section>		
+		<div class="center-box">
+			<section class="game-title">
+				<h1>TIC-TAC-TOE</h1>
+			</section>
+			<section class="tic-tac-box" id="ticTacBox">
+				<div class="a-1 grid hover" id="a1">
+					<!-- insert player token here -->
+				</div>
+				<div class="a-2 grid hvr-pulse" id="a2">
+					<!-- insert player token here -->
+				</div>
+				<div class="a-3 grid hvr-pulse" id="a3">
+					<!-- insert player token here -->
+				</div>
+				<div class="b-1 grid hvr-pulse" id="b1">
+					<!-- insert player token here -->
+				</div>
+				<div class="b-2 grid hvr-pulse" id="b2">
+					<!-- insert player token here -->
+				</div>
+				<div class="b-3 grid hvr-pulse" id="b3">
+					<!-- insert player token here -->
+				</div>
+				<div class="c-1 grid hvr-pulse" id="c1">
+					<!-- insert player token here -->
+				</div>
+				<div class="c-2 grid hvr-pulse" id="c2">
+					<!-- insert player token here -->
+				</div>
+				<div class="c-3 grid hvr-pulse" id="c3">
+					<!-- insert player token here -->
+				</div>
+			</section>
+      <section class="button-box">
+        <button id="resetButton" type="button" name="RESET GAME">RESET GAME</button>
+      </section>
+		</div>
+		<section class="player-box" id=p2>
+      <div class="player">
+        <h1>Player 2</h1>
+  			<h1>O</h1>
+        <h3>WINS:</h3>
+        <h2>0</h2>
+      </div>
+		</section>
 	</main>
 
 
@@ -56,4 +77,5 @@
 	<script src="./data.js"></script>
 	<script src="./main.js"></script>
 </body>
+
 </html>
