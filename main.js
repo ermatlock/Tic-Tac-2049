@@ -68,7 +68,7 @@ function choosePosition(player, position) {
 function placeToken(player, position) {
 	console.log(`Place Token ${player.token} at ${position}`);
 	console.log(eval(position));
-	eval(position)["innerHTML"] = `<h1>${player.token}</h1>`
+	eval(position)["innerHTML"] = `<h1 class="glitch">${player.token}</h1>`
 }
 
 function switchPlayers() {
@@ -106,6 +106,10 @@ function checkForWin(player, winState) {
 	if (matches.length === 3) {
 		player.wins++;
 		gameInfo.innerText = `Player ${player.id} WON!`;
+		ticTacBox.classList.add("block-clicks");
+		nextGame()
+	}	else if (currentGame.positions.length === 0 && matches.length < 3) {
+		gameInfo.innerText = `DRAW!`;
 		ticTacBox.classList.add("block-clicks");
 		nextGame()
 	}
