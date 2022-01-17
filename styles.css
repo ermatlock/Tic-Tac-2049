@@ -109,10 +109,10 @@ main {
 }
 
 .button-box {
-  height: 20%;
+  height: 15%;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
 button {
@@ -136,7 +136,12 @@ button:hover {
 .game-title {
   display: flex;
   justify-content: center;
-  height: 20%;
+  height: 16%;
   align-items: center;
   font-size: 3vh;
 }
+.token {
+  font-size: 7vh;
+}
+
+.turn {height: 9%;}
