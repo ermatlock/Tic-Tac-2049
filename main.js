@@ -20,14 +20,13 @@ c3.addEventListener('click', function () {takeTurn('c3')});
 
 
 function takeTurn(position) {
-
 	console.log('thisisthecurrentplayer ' + currentGame.currentPlayer)
 	// if (currentGame.positions.length === 9) {
 	// 	choosePosition(player1, position);
 	 if (currentGame.currentPlayer === 1) {
 		console.log('takeTurn player1')
 		choosePosition(player1, position);
-	} else {
+	} else if (currentGame.currentPlayer === 2) {
 		console.log('takeTurn player2')
 		choosePosition(player2, position);
 	}
@@ -37,12 +36,11 @@ function choosePosition(player, position) {
 	console.log('choosePosition')
 	for(var i = 0; i < currentGame.positions.length; i++) {
 		if (position === currentGame.positions[i]) {
-			console.log(currentGame.positions)
+			console.log("position available")
+			placeToken(player, position);
 			currentGame.positions.splice(i, 1);
 			player.choices.push(position);
-			placeToken(player, position);
 			checkEach(player);
-			switchPlayers();
 		}
 	}
 }
@@ -50,7 +48,7 @@ function choosePosition(player, position) {
 function placeToken(player, position) {
 	console.log(position)
 	console.log(player)
-	position.innerText = player.token 
+	position.innerText = player.token
 }
 
 function switchPlayers() {
@@ -65,14 +63,15 @@ function switchPlayers() {
 }
 
 function checkEach(player) {
-		checkForWin(player, ['a1', 'a2', 'a3'])
-		checkForWin(player, ['b1', 'b2', 'b3'])
-		checkForWin(player, ['c1', 'c2', 'c3'])
-		checkForWin(player, ['a1', 'b1', 'c1'])
-		checkForWin(player, ['a2', 'b2', 'c2'])
-		checkForWin(player, ['a3', 'b3', 'c3'])
-		checkForWin(player, ['a1', 'b2', 'c3'])
-		checkForWin(player, ['c1', 'b2', 'a3'])
+		checkForWin(player, ['a1', 'a2', 'a3']);
+		checkForWin(player, ['b1', 'b2', 'b3']);
+		checkForWin(player, ['c1', 'c2', 'c3']);
+		checkForWin(player, ['a1', 'b1', 'c1']);
+		checkForWin(player, ['a2', 'b2', 'c2']);
+		checkForWin(player, ['a3', 'b3', 'c3']);
+		checkForWin(player, ['a1', 'b2', 'c3']);
+		checkForWin(player, ['c1', 'b2', 'a3']);
+		switchPlayers();
 }
 
 function checkForWin(player, winState) {
@@ -90,14 +89,14 @@ function checkForWin(player, winState) {
 		player.wins ++
 		console.log(`${player.id} WON!`)
 		currentGame.resetGame();
-		// return `${player.id} WON!`;
+		return `${player.id} WON!`;
 	}
 	if (currentGame.positions.length === 0) {
 		console.log('player1 ' + player1.choices)
 		console.log('player2 ' + player2.choices)
 		console.log('DRAW!')
 		currentGame.resetGame();
-		// return 'DRAW!'
+		return 'DRAW!'
 	}
 }
 
