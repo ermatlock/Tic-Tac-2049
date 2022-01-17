@@ -36,6 +36,11 @@ function playMusic() {
 	}
 }
 
+function playSoundEffect(){
+    var audio = new Audio("./assets/sfx/compu-bleep.wav");
+    audio.play();
+}
+
 function takeTurn(e) {
 	console.log(e.target.id);
 	console.log("current player " + currentGame.currentPlayer);
@@ -58,6 +63,7 @@ function choosePosition(player, position) {
 		if (position === currentGame.positions[i]) {
 			console.log("position available");
 			placeToken(player, position);
+			playSoundEffect()
 			currentGame.positions.splice(i, 1);
 			player.choices.push(position);
 			checkEach(player);
