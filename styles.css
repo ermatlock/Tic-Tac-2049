@@ -18,6 +18,13 @@ html, body, main {
 body {
 	line-height: 1.5;
 	-webkit-font-smoothing: antialiased;
+	background: repeating-linear-gradient(
+			0deg,
+			#0E0D0E 25%,
+			#0E0D0E 50%,
+			#171819 50%,
+			#171819 75%
+		);
 }
 
 img, picture, video, canvas, svg {
@@ -159,4 +166,44 @@ button:hover {
 
 .block-clicks {
 	pointer-events: none
+}
+
+.glitch{
+  animation: glitch 1s linear infinite;
+}
+
+@keyframes glitch{
+  2%,64%{
+    transform: translate(1px,0) skew(0deg);
+  }
+  4%,60%{
+    transform: translate(-1px,0) skew(0deg);
+  }
+  62%{
+    transform: translate(0,0) skew(5deg);
+  }
+}
+
+@keyframes glitchTop{
+  1%,20%{
+    transform: translate(1px,-1px);
+  }
+  2%,20%{
+    transform: translate(-1px,1px);
+  }
+  20s%{
+    transform: translate(5px,-1px) skew(-10deg);
+  }
+}
+
+@keyframes glitchBotom{
+  1%,20%{
+    transform: translate(-1px,0);
+  }
+  1%,20%{
+    transform: translate(-1px,0);
+  }
+  62%{
+    transform: translate(-10px,2px) skew(12deg);
+  }
 }
