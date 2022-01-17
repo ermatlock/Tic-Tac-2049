@@ -26,7 +26,9 @@ input, button, textarea, select {
 }
 p, h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word;
-  color: white;
+  color: #65f7ff;
+  text-shadow: 3px 3px 3px #4d4d4d, 1px 4px 5px #aeaeae;
+  /* font-size: 3vh; */
 }
 #root, #__next {
   isolation: isolate;
@@ -77,6 +79,8 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  box-shadow:
+    0 0 5px 5px #fff;
 }
 
 .tic-tac-box {
@@ -87,6 +91,7 @@ main {
   grid-template-rows: repeat(3, 20vh [row-start]);
   justify-items: center;
   align-items: center;
+  box-shadow: 0 0 4px 2px #fff;
 }
 .grid {
 	display: flex;
@@ -104,6 +109,7 @@ main {
 
 .grid:hover {
   background-color: rgba( 50, 111, 238, 70%);
+  box-shadow: 0 0 5px 5px #fff;
 
 }
 
@@ -116,7 +122,16 @@ main {
 
 button {
   height: 8vh;
-  width: 20vh;
+  width: 26vh;
+  border-color: rgb(0 249 255 / 72%);
+  background-color: rgba( 50, 111, 238, 70%);
+  border-style: solid;
+
+}
+
+button:hover {
+  background-color: rgb(123 166 255 / 73%);
+  box-shadow: 0 0 5px 5px #fff;
 }
 
 .game-title {
@@ -124,4 +139,5 @@ button {
   justify-content: center;
   height: 20%;
   align-items: center;
+  font-size: 3vh;
 }
