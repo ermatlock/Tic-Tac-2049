@@ -7,6 +7,9 @@ var b3 = document.getElementById('b3');
 var c1 = document.getElementById('c1');
 var c2 = document.getElementById('c2');
 var c3 = document.getElementById('c3');
+var gameInfo = document.getElementById('gameInfo')
+var player1Wins = document.getElementById('player1Wins')
+var player2Wins = document.getElementById('player2Wins')
 
 a1.addEventListener('click', function () {takeTurn('a1')});
 a2.addEventListener('click', function () {takeTurn('a2')});
@@ -20,20 +23,20 @@ c3.addEventListener('click', function () {takeTurn('c3')});
 
 
 function takeTurn(position) {
-	console.log('thisisthecurrentplayer ' + currentGame.currentPlayer)
-	// if (currentGame.positions.length === 9) {
-	// 	choosePosition(player1, position);
-	 if (currentGame.currentPlayer === 1) {
-		console.log('takeTurn player1')
+	console.log('current player ' + currentGame.currentPlayer);
+	console.log('current position ' + currentGame.currentPlayer);
+	if (currentGame.currentPlayer === 1) {
+		gameInfo.innerText = 'Turn: Player 2'
 		choosePosition(player1, position);
 	} else if (currentGame.currentPlayer === 2) {
-		console.log('takeTurn player2')
+		gameInfo.innerText = 'Turn: Player 1'
 		choosePosition(player2, position);
 	}
 }
 
 function choosePosition(player, position) {
-	console.log('choosePosition')
+	console.log(`choosePosition ${player.id} at ${position}`)
+
 	for(var i = 0; i < currentGame.positions.length; i++) {
 		if (position === currentGame.positions[i]) {
 			console.log("position available")
@@ -46,9 +49,9 @@ function choosePosition(player, position) {
 }
 
 function placeToken(player, position) {
-	console.log(position)
-	console.log(player)
-	position.innerText = player.token
+	console.log(`Place Token ${player.token} at ${position}`)
+ 	console.log(eval(position))
+	eval(position)['innerText'] = player.token
 }
 
 function switchPlayers() {
@@ -80,24 +83,42 @@ function checkForWin(player, winState) {
 		for(var j = 0 ; j < winState.length; j++) {
 			if(player.choices[i] === winState[j]) {
 				matches.push(player.choices[i]);
-				console.log('current' + matches)
 			}
 		}
 	}
 	if (matches.length === 3) {
-		console.log('winning ' + matches)
 		player.wins ++
-		console.log(`${player.id} WON!`)
-		currentGame.resetGame();
-		return `${player.id} WON!`;
+		gameInfo.innerText = `Player ${player.id} WON!`;
+		setTimeout(function() {currentGame.resetGame()}, 2500);
+		setTimeout(function() {clearBoard()}, 2500);
+		setTimeout(function() {updateWins()}, 2500);
+
+
 	}
-	if (currentGame.positions.length === 0) {
-		console.log('player1 ' + player1.choices)
-		console.log('player2 ' + player2.choices)
-		console.log('DRAW!')
-		currentGame.resetGame();
-		return 'DRAW!'
+	else if (currentGame.positions.length === 0 && matches.length !== 3) {
+		gameInfo.innerText = 'DRAW!'
+		setTimeout(function() {currentGame.resetGame()}, 2500);
+		setTimeout(function() {clearBoard()}, 2500);
+		setTimeout(function() {updateWins()}, 2500);
 	}
+}
+
+function clearBoard() {
+	gameInfo.innerText = `Turn: Player ${currentGame.startingPlayer}`
+	a1.innerText = ''
+	a2.innerText = ''
+	a3.innerText = ''
+	b1.innerText = ''
+	b2.innerText = ''
+	b3.innerText = ''
+	c1.innerText = ''
+	c2.innerText = ''
+	c3.innerText = ''
+}
+
+function updateWins() {
+	player1Wins.innerText = player1.wins;
+	player2Wins.innerText = player2.wins;
 }
 
 // function nextGame() {
