@@ -13,7 +13,6 @@
 html, body, main {
 	height: 100%;
 	font-family: 'Press Start 2P', cursive;
-	/* font-family: 'VT323', monospace; */
 }
 
 body {
@@ -33,7 +32,7 @@ input, button, textarea, select {
 p, h1, h2, h3, h4, h5, h6 {
 	overflow-wrap: break-word;
 	color: #65f7ff;
-	text-shadow: 3px 3px 3px #4d4d4d, 1px 4px 5px #aeaeae;
+	text-shadow: 0px 0px 8px #7faefa4d, 0px 0px 18px #6ad0f87a;
 	/* font-size: 3vh; */
 }
 
@@ -105,14 +104,17 @@ main {
 	border-color: rgb(0 249 255 / 72%);
 	justify-content: center;
 	align-items: center;
-	font-size: 12vh;
+	font-size: 10vh;
 	color: #b2f4ff;
+	padding-left: 7%;
+	padding-top: 7%;
 	background-color: rgb(50 111 238 / 43%);
 }
 
 .grid:hover {
 	background-color: rgba(50, 111, 238, 70%);
 	box-shadow: 0 0 5px 5px #fff;
+	cursor: pointer;
 }
 
 .button-box {
@@ -129,7 +131,8 @@ button {
 	background-color: rgba(50, 111, 238, 70%);
 	border-style: solid;
 	color: #65f7ff;
-	text-shadow: 3px 3px 3px #4d4d4d, 1px 4px 5px #aeaeae;
+	text-shadow: 0px 0px 8px #7faefa4d, 0px 0px 18px #6ad0f87a;
+	cursor: pointer;
 }
 
 button:hover {
