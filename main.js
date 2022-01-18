@@ -12,16 +12,16 @@ ticTacBox.addEventListener('click', function(e) {
 playButton.addEventListener('click', playMusic)
 
 /*~~~~~~~~~~~~~~~~~~~~AUDIO~~~~~~~~~~~~~~~~~~~~~~*/
-var audioElement = new Audio('./assets/music/12-Seeking-Truth.mp3');
+
 
 /*~~~~~~~~~~~~~~~~~~FUNCTIONS~~~~~~~~~~~~~~~~~~~~*/
 function playAudio() {
-	audioElement.play();
-	audioElement.loop=true;
+	backgroundMusic.play();
+	backgroundMusic.loop=true;
 }
 
 function pauseAudio() {
-	audioElement.pause();
+	backgroundMusic.pause();
 }
 
 function playMusic() {
@@ -37,14 +37,11 @@ function playMusic() {
 }
 
 function playSoundEffect(){
-    var audio = new Audio("./assets/sfx/compu-bleep.wav");
-    audio.play();
+  bleep.play();
 }
 
+
 function takeTurn(e) {
-	console.log(e.target.id);
-	console.log("current player " + currentGame.currentPlayer);
-	console.log("current position " + e.target.id);
 	if (currentGame.currentPlayer === 1) {
 		gameInfo.innerText = "Turn: Player 2";
 		currentGame.currentPlayer = 2;
@@ -57,11 +54,8 @@ function takeTurn(e) {
 }
 
 function choosePosition(player, position) {
-	console.log(`choosePosition ${player.id} at ${position}`);
-
 	for (var i = 0; i < currentGame.positions.length; i++) {
 		if (position === currentGame.positions[i]) {
-			console.log("position available");
 			placeToken(player, position);
 			playSoundEffect()
 			currentGame.positions.splice(i, 1);
@@ -72,8 +66,6 @@ function choosePosition(player, position) {
 }
 
 function placeToken(player, position) {
-	console.log(`Place Token ${player.token} at ${position}`);
-	console.log(eval(position));
 	eval(position)["innerHTML"] = `<h1 class="glitch">${player.token}</h1>`
 }
 
@@ -113,9 +105,12 @@ function checkForWin(player, winState) {
 		player.wins++;
 		gameInfo.innerText = `Player ${player.id} WON!`;
 		ticTacBox.classList.add("block-clicks");
+		var playerWins = new Audio(`./assets/sfx/player-${player.id}-wins.mp3`);
+		playerWins.play()
 		nextGame()
 	}	else if (currentGame.positions.length === 0 && matches.length < 3) {
 		gameInfo.innerText = `DRAW!`;
+		draw.play();
 		ticTacBox.classList.add("block-clicks");
 		nextGame()
 	}
