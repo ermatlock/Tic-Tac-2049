@@ -96,7 +96,7 @@ function checkWinStates(player, winState) {
 
 function logWin(player) {
 	player.wins++;
-	gameInfo.innerText = `Player ${player.id} WON!`;
+	gameInfo.innerText = `Player ${player.id} WINS!`;
 	ticTacBox.classList.add("block-clicks");
 	var playerWins = new Audio(`./assets/sfx/player-${player.id}-wins.mp3`);
 	playerWins.play();
