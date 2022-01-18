@@ -6,8 +6,8 @@ var playButtonStatus = false;
 var backgroundMusic = new Audio('./assets/music/Tic-Tac-2049-theme.mp3');
 var bleep = new Audio('./assets/sfx/compu-bleep.wav');
 var draw = new Audio('./assets/sfx/draw.mp3');
-// var player1Wins = new Audio('./assets/sfx/player-1-wins.mp3');
-// var player2Wins = new Audio('./assets/sfx/player-2-wins.mp3');
+var player1Start = new Audio('./assets/sfx/player-1-start.mp3');
+var player2Start = new Audio('./assets/sfx/player-2-start.mp3');
 
 var winStates1 = ["a1", "a2", "a3"]
 var winStates2 = ["b1", "b2", "b3"]
