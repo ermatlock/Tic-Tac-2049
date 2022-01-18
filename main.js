@@ -15,31 +15,18 @@ playButton.addEventListener('click', playMusic)
 
 
 /*~~~~~~~~~~~~~~~~~~FUNCTIONS~~~~~~~~~~~~~~~~~~~~*/
-function playAudio() {
-	backgroundMusic.play();
-	backgroundMusic.loop=true;
-}
-
-function pauseAudio() {
-	backgroundMusic.pause();
-}
-
 function playMusic() {
 	if (playButtonStatus === false) {
 		playButton.innerText = "MUSIC ON";
 		playButtonStatus = true;
-		playAudio()
+		backgroundMusic.play();
+		backgroundMusic.loop=true;
 	} else {
 		playButton.innerText = "MUSIC OFF";
 		playButtonStatus = false;
-		pauseAudio()
+		backgroundMusic.pause();
 	}
 }
-
-function playSoundEffect(){
-  bleep.play();
-}
-
 
 function takeTurn(e) {
 	if (currentGame.currentPlayer === 1) {
@@ -57,7 +44,7 @@ function choosePosition(player, position) {
 	for (var i = 0; i < currentGame.positions.length; i++) {
 		if (position === currentGame.positions[i]) {
 			placeToken(player, position);
-			playSoundEffect()
+			bleep.play();
 			currentGame.positions.splice(i, 1);
 			player.choices.push(position);
 			checkEach(player);
