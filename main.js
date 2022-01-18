@@ -1,18 +1,15 @@
 /*~~~~~~~~~~~~~~QUERY SELECTORS~~~~~~~~~~~~~~~~~~*/
-const gameInfo = document.getElementById('gameInfo');
-const player1Wins = document.getElementById('player1Wins');
-const player2Wins = document.getElementById('player2Wins');
-const ticTacBox = document.getElementById('ticTacBox');
-const playButton = document.getElementById('playButton')
+const gameInfo = document.getElementById("gameInfo");
+const player1Wins = document.getElementById("player1Wins");
+const player2Wins = document.getElementById("player2Wins");
+const ticTacBox = document.getElementById("ticTacBox");
+const playButton = document.getElementById("playButton");
 
 /*~~~~~~~~~~~~~~EVENT LISTENERS~~~~~~~~~~~~~~~~~~*/
-ticTacBox.addEventListener('click', function(e) {
+ticTacBox.addEventListener("click", function(e) {
 	takeTurn(e);
 });
-playButton.addEventListener('click', playMusic)
-
-/*~~~~~~~~~~~~~~~~~~~~AUDIO~~~~~~~~~~~~~~~~~~~~~~*/
-
+playButton.addEventListener("click", playMusic);
 
 /*~~~~~~~~~~~~~~~~~~FUNCTIONS~~~~~~~~~~~~~~~~~~~~*/
 function playMusic() {
@@ -20,14 +17,14 @@ function playMusic() {
 		playButton.innerText = "MUSIC ON";
 		playButtonStatus = true;
 		backgroundMusic.play();
-		backgroundMusic.loop=true;
+		backgroundMusic.loop = true;
 	} else {
 		playButton.innerText = "MUSIC OFF";
 		playButtonStatus = false;
 		backgroundMusic.pause();
 	}
 }
-
+/*~~~~~~~~~~~~~~~~~~GAME FUNCTIONS~~~~~~~~~~~~~~~~~~~~*/
 function takeTurn(e) {
 	if (currentGame.currentPlayer === 1) {
 		gameInfo.innerText = "Turn: Player 2";
@@ -43,48 +40,45 @@ function takeTurn(e) {
 function choosePosition(player, position) {
 	for (var i = 0; i < currentGame.positions.length; i++) {
 		if (position === currentGame.positions[i]) {
-			placeToken(player, position);
-			bleep.play();
 			currentGame.positions.splice(i, 1);
 			player.choices.push(position);
-			checkEach(player);
+			placeToken(player, position);
+			bleep.play();
+			checkWinOrDraw(player);
 		}
 	}
 }
 
 function placeToken(player, position) {
-	eval(position)["innerHTML"] = `<h1 class="glitch">${player.token}</h1>`
+	eval(position)["innerHTML"] = `<h1 class="glitch">${player.token}</h1>`;
 }
 
-function switchPlayers() {
-	if (currentGame.startingPlayer === 1) {
-		currentGame.startingPlayer = 2;
-		gameInfo.innerText = "Turn: Player 2";
-		currentGame.currentPlayer = 2;
-	} else {
-		currentGame.startingPlayer = 1;
-		gameInfo.innerText = "Turn: Player 1";
-		currentGame.currentPlayer = 1;
-	}
-}
-
-function checkEach(player) {
-	check1 = checkForWin(player, winStates1)
-	check2 = checkForWin(player, winStates2)
-	check3 = checkForWin(player, winStates3)
-	check4 = checkForWin(player, winStates4)
-	check5 = checkForWin(player, winStates5)
-	check6 = checkForWin(player, winStates6)
-	check7 = checkForWin(player, winStates7)
-	check8 = checkForWin(player, winStates8)
-	if (check1 || check2 || check3 || check4 || check5 || check6 || check7 || check8) {
-		win(player);
+function checkWinOrDraw(player) {
+	check1 = checkWinStates(player, winStates1);
+	check2 = checkWinStates(player, winStates2);
+	check3 = checkWinStates(player, winStates3);
+	check4 = checkWinStates(player, winStates4);
+	check5 = checkWinStates(player, winStates5);
+	check6 = checkWinStates(player, winStates6);
+	check7 = checkWinStates(player, winStates7);
+	check8 = checkWinStates(player, winStates8);
+	if (
+		check1 ||
+		check2 ||
+		check3 ||
+		check4 ||
+		check5 ||
+		check6 ||
+		check7 ||
+		check8
+	) {
+		logWin(player);
 	} else {
 		checkForDraw();
 	}
 }
 
-function checkForWin(player, winState) {
+function checkWinStates(player, winState) {
 	var matches = [];
 	for (var i = 0; i < player.choices.length; i++) {
 		for (var j = 0; j < winState.length; j++) {
@@ -95,19 +89,18 @@ function checkForWin(player, winState) {
 	}
 	if (matches.length === 3) {
 		return true;
-
 	} else {
 		return false;
 	}
 }
 
-function win(player) {
+function logWin(player) {
 	player.wins++;
 	gameInfo.innerText = `Player ${player.id} WON!`;
 	ticTacBox.classList.add("block-clicks");
 	var playerWins = new Audio(`./assets/sfx/player-${player.id}-wins.mp3`);
-	playerWins.play()
-	nextGame()
+	playerWins.play();
+	nextGame();
 }
 
 function checkForDraw() {
@@ -115,21 +108,8 @@ function checkForDraw() {
 		gameInfo.innerText = `DRAW!`;
 		draw.play();
 		ticTacBox.classList.add("block-clicks");
-		nextGame()
-    }
-}
-
-function clearBoard() {
-	gameInfo.innerText = `Turn: Player ${currentGame.startingPlayer}`;
-	a1.innerText = "";
-	a2.innerText = "";
-	a3.innerText = "";
-	b1.innerText = "";
-	b2.innerText = "";
-	b3.innerText = "";
-	c1.innerText = "";
-	c2.innerText = "";
-	c3.innerText = "";
+		nextGame();
+	}
 }
 
 function updateWins() {
@@ -143,6 +123,33 @@ function nextGame() {
 		currentGame.resetGame();
 		clearBoard();
 		updateWins();
-		switchPlayers();
-	}, 2500);
+		switchStartingPlayer();
+	}, 3500);
+}
+
+function switchStartingPlayer() {
+	if (currentGame.startingPlayer === 1) {
+		currentGame.startingPlayer = 2;
+		gameInfo.innerText = "Turn: Player 2";
+		currentGame.currentPlayer = 2;
+		player2Start.play();
+	} else {
+		currentGame.startingPlayer = 1;
+		gameInfo.innerText = "Turn: Player 1";
+		currentGame.currentPlayer = 1;
+		player1Start.play();
+	}
+}
+
+function clearBoard() {
+	gameInfo.innerText = `Turn: Player ${currentGame.startingPlayer}`;
+	a1.innerText = "";
+	a2.innerText = "";
+	a3.innerText = "";
+	b1.innerText = "";
+	b2.innerText = "";
+	b3.innerText = "";
+	c1.innerText = "";
+	c2.innerText = "";
+	c3.innerText = "";
 }
