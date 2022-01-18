@@ -1,16 +1,47 @@
-var gameInfo = document.getElementById("gameInfo");
-var player1Wins = document.getElementById("player1Wins");
-var player2Wins = document.getElementById("player2Wins");
-var ticTacBox = document.getElementById("ticTacBox");
+/*~~~~~~~~~~~~~~QUERY SELECTORS~~~~~~~~~~~~~~~~~~*/
+const gameInfo = document.getElementById('gameInfo');
+const player1Wins = document.getElementById('player1Wins');
+const player2Wins = document.getElementById('player2Wins');
+const ticTacBox = document.getElementById('ticTacBox');
+const playButton = document.getElementById('playButton')
 
-ticTacBox.addEventListener("click", function(e) {
+/*~~~~~~~~~~~~~~EVENT LISTENERS~~~~~~~~~~~~~~~~~~*/
+ticTacBox.addEventListener('click', function(e) {
 	takeTurn(e);
 });
+playButton.addEventListener('click', playMusic)
+
+/*~~~~~~~~~~~~~~~~~~~~AUDIO~~~~~~~~~~~~~~~~~~~~~~*/
+
+
+/*~~~~~~~~~~~~~~~~~~FUNCTIONS~~~~~~~~~~~~~~~~~~~~*/
+function playAudio() {
+	backgroundMusic.play();
+	backgroundMusic.loop=true;
+}
+
+function pauseAudio() {
+	backgroundMusic.pause();
+}
+
+function playMusic() {
+	if (playButtonStatus === false) {
+		playButton.innerText = "MUSIC ON";
+		playButtonStatus = true;
+		playAudio()
+	} else {
+		playButton.innerText = "MUSIC OFF";
+		playButtonStatus = false;
+		pauseAudio()
+	}
+}
+
+function playSoundEffect(){
+  bleep.play();
+}
+
 
 function takeTurn(e) {
-	console.log(e.target.id);
-	console.log("current player " + currentGame.currentPlayer);
-	console.log("current position " + e.target.id);
 	if (currentGame.currentPlayer === 1) {
 		gameInfo.innerText = "Turn: Player 2";
 		currentGame.currentPlayer = 2;
@@ -23,12 +54,10 @@ function takeTurn(e) {
 }
 
 function choosePosition(player, position) {
-	console.log(`choosePosition ${player.id} at ${position}`);
-
 	for (var i = 0; i < currentGame.positions.length; i++) {
 		if (position === currentGame.positions[i]) {
-			console.log("position available");
 			placeToken(player, position);
+			playSoundEffect()
 			currentGame.positions.splice(i, 1);
 			player.choices.push(position);
 			checkEach(player);
@@ -37,9 +66,7 @@ function choosePosition(player, position) {
 }
 
 function placeToken(player, position) {
-	console.log(`Place Token ${player.token} at ${position}`);
-	console.log(eval(position));
-	eval(position)["innerText"] = player.token;
+	eval(position)["innerHTML"] = `<h1 class="glitch">${player.token}</h1>`
 }
 
 function switchPlayers() {
@@ -78,39 +105,14 @@ function checkForWin(player, winState) {
 		player.wins++;
 		gameInfo.innerText = `Player ${player.id} WON!`;
 		ticTacBox.classList.add("block-clicks");
-		setTimeout(function() {
-			ticTacBox.classList.remove("block-clicks");
-		}, 2500);
-		setTimeout(function() {
-			currentGame.resetGame();
-		}, 2500);
-		setTimeout(function() {
-			clearBoard();
-		}, 2500);
-		setTimeout(function() {
-			updateWins();
-		}, 2500);
-		setTimeout(function() {
-			switchPlayers();
-		}, 2500);
-	} else if (currentGame.positions.length === 0 && matches.length !== 3) {
-		gameInfo.innerText = "DRAW!";
+		var playerWins = new Audio(`./assets/sfx/player-${player.id}-wins.mp3`);
+		playerWins.play()
+		nextGame()
+	}	else if (currentGame.positions.length === 0 && matches.length < 3) {
+		gameInfo.innerText = `DRAW!`;
+		draw.play();
 		ticTacBox.classList.add("block-clicks");
-		setTimeout(function() {
-			ticTacBox.classList.remove("block-clicks");
-		}, 2500);
-		setTimeout(function() {
-			currentGame.resetGame();
-		}, 2500);
-		setTimeout(function() {
-			clearBoard();
-		}, 2500);
-		setTimeout(function() {
-			updateWins();
-		}, 2500);
-		setTimeout(function() {
-			switchPlayers();
-		}, 2500);
+		nextGame()
 	}
 }
 
@@ -132,11 +134,12 @@ function updateWins() {
 	player2Wins.innerText = player2.wins;
 }
 
-// function nextGame() {
-// 	console.log('nextGame')
-// 	// player1.choices = [];
-// 	// player2.choices = [];
-// 	// currentGame.positions = ['a1', 'a2', 'a3', 'b1', 'b2', 'b3', 'c1', 'c2', 'c3'];
-// 	// currentGame.currentPlayer = 1
-// 	// console.log(player1.choices + player2.choices + currentGame.positions + currentGame.currentPlayer)
-// }
+function nextGame() {
+	setTimeout(function() {
+		ticTacBox.classList.remove("block-clicks");
+		currentGame.resetGame();
+		clearBoard();
+		updateWins();
+		switchPlayers();
+	}, 2500);
+}
