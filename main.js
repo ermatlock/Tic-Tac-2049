@@ -82,14 +82,19 @@ function switchPlayers() {
 }
 
 function checkEach(player) {
-	checkForWin(player, ["a1", "a2", "a3"]);
-	checkForWin(player, ["b1", "b2", "b3"]);
-	checkForWin(player, ["c1", "c2", "c3"]);
-	checkForWin(player, ["a1", "b1", "c1"]);
-	checkForWin(player, ["a2", "b2", "c2"]);
-	checkForWin(player, ["a3", "b3", "c3"]);
-	checkForWin(player, ["a1", "b2", "c3"]);
-	checkForWin(player, ["c1", "b2", "a3"]);
+	check1 = checkForWin(player, winStates1)
+	check2 = checkForWin(player, winStates2)
+	check3 = checkForWin(player, winStates3)
+	check4 = checkForWin(player, winStates4)
+	check5 = checkForWin(player, winStates5)
+	check6 = checkForWin(player, winStates6)
+	check7 = checkForWin(player, winStates7)
+	check8 = checkForWin(player, winStates8)
+	if (check1 || check2 || check3 || check4 || check5 || check6 || check7 || check8) {
+		win(player);
+	} else {
+		checkForDraw();
+	}
 }
 
 function checkForWin(player, winState) {
@@ -102,18 +107,29 @@ function checkForWin(player, winState) {
 		}
 	}
 	if (matches.length === 3) {
-		player.wins++;
-		gameInfo.innerText = `Player ${player.id} WON!`;
-		ticTacBox.classList.add("block-clicks");
-		var playerWins = new Audio(`./assets/sfx/player-${player.id}-wins.mp3`);
-		playerWins.play()
-		nextGame()
-	}	else if (currentGame.positions.length === 0 && matches.length < 3) {
+		return true;
+
+	} else {
+		return false;
+	}
+}
+
+function win(player) {
+	player.wins++;
+	gameInfo.innerText = `Player ${player.id} WON!`;
+	ticTacBox.classList.add("block-clicks");
+	var playerWins = new Audio(`./assets/sfx/player-${player.id}-wins.mp3`);
+	playerWins.play()
+	nextGame()
+}
+
+function checkForDraw() {
+	if (currentGame.positions.length === 0) {
 		gameInfo.innerText = `DRAW!`;
 		draw.play();
 		ticTacBox.classList.add("block-clicks");
 		nextGame()
-	}
+    }
 }
 
 function clearBoard() {
