@@ -18,13 +18,11 @@ html, body, main {
 body {
 	line-height: 1.5;
 	-webkit-font-smoothing: antialiased;
-	background: repeating-linear-gradient(
-			0deg,
+	background: repeating-linear-gradient(0deg,
 			#0E0D0E 25%,
 			#0E0D0E 50%,
 			#171819 50%,
-			#171819 75%
-		);
+			#171819 75%);
 }
 
 img, picture, video, canvas, svg {
@@ -40,7 +38,6 @@ p, h1, h2, h3, h4, h5, h6 {
 	overflow-wrap: break-word;
 	color: #65f7ff;
 	text-shadow: 0px 0px 8px #7faefa4d, 0px 0px 18px #6ad0f87a;
-	/* font-size: 3vh; */
 }
 
 #root, #__next {
@@ -56,13 +53,13 @@ p, h1, h2, h3, h4, h5, h6 {
 main {
 	display: flex;
 	justify-content: center;
-	/* align-items: center; */
 	background: repeating-linear-gradient(transparent, transparent 2px, black 3px, black 3px), url(assets/images/4910984.gif);
 	background-size: auto 100%;
 	background-position: center center;
 	opacity: 1;
 }
 
+/* ~~~~~~~~~~~~~PLAYER SECTIONS~~~~~~~~~~~~~~~~~ */
 .player-box {
 	width: 30%;
 	display: flex;
@@ -81,7 +78,6 @@ main {
 }
 
 .center-box {
-	/* height: 100%; */
 	width: 40%;
 	display: flex;
 	flex-direction: column;
@@ -91,9 +87,16 @@ main {
 		0 0 5px 5px #fff;
 }
 
+/* ~~~~~~~~~~~~~CENTER SECTIONS~~~~~~~~~~~~~~~~~ */
+.game-title {
+	display: flex;
+	justify-content: center;
+	height: 16%;
+	align-items: center;
+	font-size: 3vh;
+}
+
 .tic-tac-box {
-	/* width: 50%; */
-	/* height: 60%; */
 	display: grid;
 	grid-template-columns: repeat(3, 20vh [col-start]);
 	grid-template-rows: repeat(3, 20vh [row-start]);
@@ -107,7 +110,6 @@ main {
 	width: 100%;
 	height: 100%;
 	border-style: solid;
-	/* border-width: 5px; */
 	border-color: rgb(0 249 255 / 72%);
 	justify-content: center;
 	align-items: center;
@@ -148,18 +150,6 @@ button:hover {
 	color: white;
 }
 
-.game-title {
-	display: flex;
-	justify-content: center;
-	height: 16%;
-	align-items: center;
-	font-size: 3vh;
-}
-
-.token {
-	font-size: 7vh;
-}
-
 .turn {
 	height: 9%;
 }
@@ -168,42 +158,28 @@ button:hover {
 	pointer-events: none
 }
 
-.glitch{
-  animation: glitch 1s linear infinite;
+.token {
+	font-size: 7vh;
 }
 
-@keyframes glitch{
-  2%,64%{
-    transform: translate(1px,0) skew(0deg);
-  }
-  4%,60%{
-    transform: translate(-1px,0) skew(0deg);
-  }
-  62%{
-    transform: translate(0,0) skew(5deg);
-  }
+.glitch {
+	animation: glitch 1s linear infinite;
 }
 
-@keyframes glitchTop{
-  1%,20%{
-    transform: translate(1px,-1px);
-  }
-  2%,20%{
-    transform: translate(-1px,1px);
-  }
-  20s%{
-    transform: translate(5px,-1px) skew(-10deg);
-  }
+@keyframes glitch {
+	2%, 64% { transform: translate(1px, 0) skew(0deg);}
+	4%, 60% { transform: translate(-1px, 0) skew(0deg);}
+	62% { transform: translate(0, 0) skew(5deg);}
 }
 
-@keyframes glitchBotom{
-  1%,20%{
-    transform: translate(-1px,0);
-  }
-  1%,20%{
-    transform: translate(-1px,0);
-  }
-  62%{
-    transform: translate(-10px,2px) skew(12deg);
-  }
+@keyframes glitchTop {
+	1%, 20% {transform: translate(1px, -1px);}
+	2%, 20% {transform: translate(-1px, 1px);}
+	20s% {transform: translate(5px, -1px) skew(-10deg);}
+}
+
+@keyframes glitchBotom {
+	1%, 20% {transform: translate(-1px, 0);}
+	1%, 20% {transform: translate(-1px, 0);}
+	62% {transform: translate(-10px, 2px) skew(15deg);}
 }
