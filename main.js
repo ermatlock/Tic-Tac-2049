@@ -92,7 +92,6 @@ function checkWinStates(player, winState) {
 		for (var j = 0; j < winState.length; j++) {
 			if (player.choices[i] === winState[j]) {
 				matches.push(player.choices[i]);
-				console.log(matches);
 			}
 		}
 	}
