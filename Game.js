@@ -17,23 +17,18 @@ class Game {
 		];
 	}
 
-	resetGame() {
-		this.player1.choices = [];
-		this.player2.choices = [];
-		this.player1.winner = false;
-		this.player2.winner = false;
-		this.currentPositions = ["a1", "a2", "a3", "b1", "b2", "b3", "c1", "c2", "c3"];
-	}
-
-	switchStartingPlayer() {
-		if (this.startingPlayer === 1) {
-			this.startingPlayer = 2;
-			this.currentPlayer = 2;
-			switchPlayerView(2, 1);
+	changePlayer() {
+		console.log('changePlayer')
+		if (this.currentPlayer === 1) {
+			updateGameInfo("Turn: Player 2");
+			add(player2Box, "active");
+			remove(player1Box, "active");
+			currentGame.currentPlayer = 2;
 		} else {
-			this.startingPlayer = 1;
-			this.currentPlayer = 1;
-			switchPlayerView(1, 2);
+			updateGameInfo("Turn: Player 1");
+			add(player1Box, "active");
+			remove(player2Box, "active");
+			currentGame.currentPlayer = 1;
 		}
 	}
 
@@ -44,14 +39,15 @@ class Game {
 				player.choices.push(position);
 				placeToken(player, position);
 				bleep.play();
+				this.changePlayer();
 				this.checkWinOrDraw(player);
-				changePlayer();
 			}
 		}
 	}
 
 	checkWinOrDraw(player) {
-		for (var k = 1; k < this.winStates.length; k++) {
+		console.log('checkWinOrDraw')
+		for (var k = 0; k < this.winStates.length; k++) {
 // 			winState = eval(`winStates${k}`);
 			this.checkWinStates(player, this.winStates[k]);
 		}
@@ -63,6 +59,7 @@ class Game {
 	}
 
 	checkWinStates(player, winState) {
+		console.log('checkWinStates')
 		var matches = [];
 		for (var i = 0; i < player.choices.length; i++) {
 			for (var j = 0; j < winState.length; j++) {
@@ -77,14 +74,16 @@ class Game {
 	}
 
 
-	// checkForDraw() {
-	// 	if (this.currentPositions.length === 0) {
-	// 		updateGameInfo("DRAW!");
-	// 		ticTacBox.classList.add("block-clicks");
-	// 		draw.play();
-	// 		this.nextGame();
-	// 	}
-	// }
+	checkForDraw() {
+		if (this.currentPositions.length === 0) {
+			updateGameInfo("DRAW!");
+			ticTacBox.classList.add("block-clicks");
+			draw.play();
+			this.nextGame();
+		}
+	}
+
+
 
 	nextGame() {
 		setTimeout(function() {
@@ -94,6 +93,26 @@ class Game {
 			clearBoard();
 			updateWins();
 		}, 3500);
+	}
+
+	switchStartingPlayer() {
+		if (this.startingPlayer === 1) {
+			this.startingPlayer = 2;
+			this.currentPlayer = 2;
+			switchPlayerView(2, 1);
+		} else {
+			this.startingPlayer = 1;
+			this.currentPlayer = 1;
+			switchPlayerView(1, 2);
+		}
+	}
+
+	resetGame() {
+		this.player1.choices = [];
+		this.player2.choices = [];
+		this.player1.winner = false;
+		this.player2.winner = false;
+		this.currentPositions = ["a1", "a2", "a3", "b1", "b2", "b3", "c1", "c2", "c3"];
 	}
 
 }
