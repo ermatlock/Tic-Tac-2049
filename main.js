@@ -38,30 +38,31 @@ function remove(element, selector) {
 }
 
 function updateGameInfo(string) {
+	console.log(`Player ${player.id} WINS!`)
 	gameInfo.innerText = string;
 }
 
 /*~~~~~~~~~~~~~~~~~~GAME FUNCTIONS~~~~~~~~~~~~~~~~~~~~*/
 function takeTurn(e) {
 	if (currentGame.currentPlayer === 1) {
-		choosePosition(player1, e.target.id);
+		currentGame.choosePosition(player1, e.target.id);
 	} else if (currentGame.currentPlayer === 2) {
-		choosePosition(player2, e.target.id);
+		currentGame.choosePosition(player2, e.target.id);
 	}
 }
 
-function choosePosition(player, position) {
-	for (var i = 0; i < currentGame.positions.length; i++) {
-		if (position === currentGame.positions[i]) {
-			currentGame.positions.splice(i, 1);
-			player.choices.push(position);
-			placeToken(player, position);
-			bleep.play();
-			checkWinOrDraw(player);
-			changePlayer();
-		}
-	}
-}
+// function choosePosition(player, position) {
+// 	for (var i = 0; i < currentGame.positions.length; i++) {
+// 		if (position === currentGame.positions[i]) {
+// 			currentGame.positions.splice(i, 1);
+// 			player.choices.push(position);
+// 			placeToken(player, position);
+// 			bleep.play();
+// 			checkWinOrDraw(player);
+// 			changePlayer();
+// 		}
+// 	}
+// }
 
 function changePlayer() {
 	if (currentGame.currentPlayer === 1) {
@@ -81,43 +82,44 @@ function placeToken(player, position) {
 	eval(position)["innerHTML"] = `<h1 class="glitch">${player.token}</h1>`;
 }
 
-function checkWinOrDraw(player) {
-	for (var k = 1; k < 9; k++) {
-		winState = eval(`winState${k}`);
-		checkWinStates(player, winState);
-	}
-	if (player.winner) {
-		logWin(player);
-	} else {
-		checkForDraw();
-	}
-}
-
-function checkWinStates(player, winState) {
-	var matches = [];
-	for (var i = 0; i < player.choices.length; i++) {
-		for (var j = 0; j < winState.length; j++) {
-			if (player.choices[i] === winState[j]) {
-				matches.push(player.choices[i]);
-			}
-		}
-	}
-	if (matches.length === 3) {
-		player.winner = true;
-	}
-}
+// function checkWinOrDraw(player) {
+// 	for (var k = 1; k < 9; k++) {
+// 		winState = eval(`winState${k}`);
+// 		checkWinStates(player, winState);
+// 	}
+// 	if (player.winner) {
+// 		logWin(player);
+// 	} else {
+// 		checkForDraw();
+// 	}
+// }
+//
+// function checkWinStates(player, winState) {
+// 	var matches = [];
+// 	for (var i = 0; i < player.choices.length; i++) {
+// 		for (var j = 0; j < winState.length; j++) {
+// 			if (player.choices[i] === winState[j]) {
+// 				matches.push(player.choices[i]);
+// 			}
+// 		}
+// 	}
+// 	if (matches.length === 3) {
+// 		player.winner = true;
+// 	}
+// }
 
 function logWin(player) {
 	player.addWins();
+	console.log(`Player ${player.id} WINS!`)
 	updateGameInfo(`Player ${player.id} WINS!`);
 	ticTacBox.classList.add("block-clicks");
 	var playerWins = new Audio(`./assets/sfx/player-${player.id}-wins.mp3`);
 	playerWins.play();
-	nextGame();
+	currentGame.nextGame();
 }
 
 function checkForDraw() {
-	if (currentGame.positions.length === 0) {
+	if (currentGame.currentPositions.length === 0) {
 		updateGameInfo("DRAW!");
 		ticTacBox.classList.add("block-clicks");
 		draw.play();
@@ -130,15 +132,15 @@ function updateWins() {
 	player2Wins.innerText = player2.wins;
 }
 
-function nextGame() {
-	setTimeout(function() {
-		currentGame.resetGame();
-		currentGame.switchStartingPlayer();
-		ticTacBox.classList.remove("block-clicks");
-		clearBoard();
-		updateWins();
-	}, 3500);
-}
+// function nextGame() {
+// 	setTimeout(function() {
+// 		currentGame.resetGame();
+// 		currentGame.switchStartingPlayer();
+// 		ticTacBox.classList.remove("block-clicks");
+// 		clearBoard();
+// 		updateWins();
+// 	}, 3500);
+// }
 
 function switchPlayerView(activePlayerId, inactivePlayerId) {
 	updateGameInfo(`Turn: Player ${activePlayerId}`);
@@ -148,8 +150,8 @@ function switchPlayerView(activePlayerId, inactivePlayerId) {
 }
 
 function clearBoard() {
-	for (var i = 0; i < positions.length; i++) {
-		var gridId = eval(positions[i]);
+	for (var i = 0; i < currentGame.currentPositions.length; i++) {
+		var gridId = eval(currentGame.currentPositions[i]);
 		gridId.innerText = "";
 	}
 }
