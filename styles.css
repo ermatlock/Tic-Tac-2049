@@ -42,8 +42,8 @@ p, h1, h2, h3, h4, h5, h6 {
 .hidden {
 	display: none !important;
 }
-
 /* ~~~~~~~~~~~~~~~END RESET~~~~~~~~~~~~~~~ */
+
 /* ~~~~~~~~~~~~~~~~LAYOUT~~~~~~~~~~~~~~~~~ */
 main {
 	display: flex;
@@ -54,7 +54,7 @@ main {
 	opacity: 1;
 }
 
-/* ~~~~~~~~~~~~~PLAYER SECTIONS~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~LAYOUT: PLAYER SECTIONS~~~~~~~~ */
 .player-box {
 	width: 30%;
 	display: flex;
@@ -145,9 +145,7 @@ button {
 
 .button-off {
 	background-color: rgb(39 79 161 / 70%);
-	/* border-style: solid; */
 	color: #3ca2a7;
-	/* text-shadow: 0px 0px 8px #7faefa, 0px 0px 18px #6ad0f8; */
 }
 
 button:hover {
@@ -168,6 +166,7 @@ button:hover {
 	font-size: 7vh;
 }
 
+/* ~~~~~~~~~~~~~GLITCH EFFECT~~~~~~~~~~~~~~~~~ */
 .glitch {
 	animation: glitch 1s linear infinite;
 }
@@ -190,6 +189,8 @@ button:hover {
 	62% {transform: translate(-10px, 2px) skew(15deg);}
 }
 
+
+/* ~~~~~~~~~~~~~MEDIA QUERIES~~~~~~~~~~~~~~~~~ */
 @media screen and (max-width: 1260px) {
 	.player-box {
 		width: 25%;
