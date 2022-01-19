@@ -57,8 +57,8 @@ function choosePosition(player, position) {
 			player.choices.push(position);
 			placeToken(player, position);
 			bleep.play();
-			checkWinOrDraw(player);
 			changePlayer();
+			checkWinOrDraw(player);
 		}
 	}
 }
