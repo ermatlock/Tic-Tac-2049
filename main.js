@@ -1,53 +1,58 @@
 /*~~~~~~~~~~~~~~QUERY SELECTORS~~~~~~~~~~~~~~~~~~*/
-const gameInfo = document.getElementById('gameInfo');
-const player1Wins = document.getElementById('player1Wins');
-const player2Wins = document.getElementById('player2Wins');
-const ticTacBox = document.getElementById('ticTacBox');
-const playButton = document.getElementById('playButton')
+var gameInfo = document.getElementById("gameInfo");
+var player1Box = document.getElementById("p1");
+var player2Box = document.getElementById("p2");
+var player1Wins = document.getElementById("player1Wins");
+var player2Wins = document.getElementById("player2Wins");
+var ticTacBox = document.getElementById("ticTacBox");
+var playButton = document.getElementById("playButton");
 
 /*~~~~~~~~~~~~~~EVENT LISTENERS~~~~~~~~~~~~~~~~~~*/
-ticTacBox.addEventListener('click', function(e) {
+ticTacBox.addEventListener("click", function(e) {
 	takeTurn(e);
 });
-playButton.addEventListener('click', playMusic)
-
-/*~~~~~~~~~~~~~~~~~~~~AUDIO~~~~~~~~~~~~~~~~~~~~~~*/
-
+playButton.addEventListener("click", playMusic);
 
 /*~~~~~~~~~~~~~~~~~~FUNCTIONS~~~~~~~~~~~~~~~~~~~~*/
-function playAudio() {
-	backgroundMusic.play();
-	backgroundMusic.loop=true;
-}
-
-function pauseAudio() {
-	backgroundMusic.pause();
-}
-
 function playMusic() {
 	if (playButtonStatus === false) {
 		playButton.innerText = "MUSIC ON";
+		remove(playButton, "button-off");
 		playButtonStatus = true;
-		playAudio()
+		backgroundMusic.play();
+		backgroundMusic.loop = true;
 	} else {
 		playButton.innerText = "MUSIC OFF";
+		add(playButton, "button-off");
 		playButtonStatus = false;
-		pauseAudio()
+		backgroundMusic.pause();
 	}
 }
 
-function playSoundEffect(){
-  bleep.play();
+function add(element, selector) {
+	element.classList.add(selector);
 }
 
+function remove(element, selector) {
+	element.classList.remove(selector);
+}
 
+function updateGameInfo(string) {
+	gameInfo.innerText = string;
+}
+
+/*~~~~~~~~~~~~~~~~~~GAME FUNCTIONS~~~~~~~~~~~~~~~~~~~~*/
 function takeTurn(e) {
 	if (currentGame.currentPlayer === 1) {
-		gameInfo.innerText = "Turn: Player 2";
+		updateGameInfo("Turn: Player 2");
+		add(player2Box, "active");
+		remove(player1Box, "active");
 		currentGame.currentPlayer = 2;
 		choosePosition(player1, e.target.id);
 	} else if (currentGame.currentPlayer === 2) {
-		gameInfo.innerText = "Turn: Player 1";
+		updateGameInfo("Turn: Player 1");
+		add(player1Box, "active");
+		remove(player2Box, "active");
 		currentGame.currentPlayer = 1;
 		choosePosition(player2, e.target.id);
 	}
@@ -56,48 +61,32 @@ function takeTurn(e) {
 function choosePosition(player, position) {
 	for (var i = 0; i < currentGame.positions.length; i++) {
 		if (position === currentGame.positions[i]) {
-			placeToken(player, position);
-			playSoundEffect()
 			currentGame.positions.splice(i, 1);
 			player.choices.push(position);
-			checkEach(player);
+			placeToken(player, position);
+			bleep.play();
+			checkWinOrDraw(player);
 		}
 	}
 }
 
 function placeToken(player, position) {
-	eval(position)["innerHTML"] = `<h1 class="glitch">${player.token}</h1>`
+	eval(position)["innerHTML"] = `<h1 class="glitch">${player.token}</h1>`;
 }
 
-function switchPlayers() {
-	if (currentGame.startingPlayer === 1) {
-		currentGame.startingPlayer = 2;
-		gameInfo.innerText = "Turn: Player 2";
-		currentGame.currentPlayer = 2;
-	} else {
-		currentGame.startingPlayer = 1;
-		gameInfo.innerText = "Turn: Player 1";
-		currentGame.currentPlayer = 1;
+function checkWinOrDraw(player) {
+	for (var k = 1; k < 9; k++) {
+		winState = eval(`winState${k}`);
+		checkWinStates(player, winState);
 	}
-}
-
-function checkEach(player) {
-	check1 = checkForWin(player, winStates1)
-	check2 = checkForWin(player, winStates2)
-	check3 = checkForWin(player, winStates3)
-	check4 = checkForWin(player, winStates4)
-	check5 = checkForWin(player, winStates5)
-	check6 = checkForWin(player, winStates6)
-	check7 = checkForWin(player, winStates7)
-	check8 = checkForWin(player, winStates8)
-	if (check1 || check2 || check3 || check4 || check5 || check6 || check7 || check8) {
-		win(player);
+	if (player.winner) {
+		logWin(player);
 	} else {
 		checkForDraw();
 	}
 }
 
-function checkForWin(player, winState) {
+function checkWinStates(player, winState) {
 	var matches = [];
 	for (var i = 0; i < player.choices.length; i++) {
 		for (var j = 0; j < winState.length; j++) {
@@ -107,42 +96,26 @@ function checkForWin(player, winState) {
 		}
 	}
 	if (matches.length === 3) {
-		return true;
-
-	} else {
-		return false;
+		player.winner = true;
 	}
 }
 
-function win(player) {
-	player.wins++;
-	gameInfo.innerText = `Player ${player.id} WON!`;
+function logWin(player) {
+	player.addWins();
+	updateGameInfo(`Player ${player.id} WINS!`);
 	ticTacBox.classList.add("block-clicks");
 	var playerWins = new Audio(`./assets/sfx/player-${player.id}-wins.mp3`);
-	playerWins.play()
-	nextGame()
+	playerWins.play();
+	nextGame();
 }
 
 function checkForDraw() {
 	if (currentGame.positions.length === 0) {
-		gameInfo.innerText = `DRAW!`;
-		draw.play();
+		updateGameInfo("DRAW!");
 		ticTacBox.classList.add("block-clicks");
-		nextGame()
-    }
-}
-
-function clearBoard() {
-	gameInfo.innerText = `Turn: Player ${currentGame.startingPlayer}`;
-	a1.innerText = "";
-	a2.innerText = "";
-	a3.innerText = "";
-	b1.innerText = "";
-	b2.innerText = "";
-	b3.innerText = "";
-	c1.innerText = "";
-	c2.innerText = "";
-	c3.innerText = "";
+		draw.play();
+		nextGame();
+	}
 }
 
 function updateWins() {
@@ -152,10 +125,24 @@ function updateWins() {
 
 function nextGame() {
 	setTimeout(function() {
-		ticTacBox.classList.remove("block-clicks");
 		currentGame.resetGame();
+		currentGame.switchStartingPlayer();
+		ticTacBox.classList.remove("block-clicks");
 		clearBoard();
 		updateWins();
-		switchPlayers();
-	}, 2500);
+	}, 3500);
+}
+
+function switchPlayerView(activePlayerId, inactivePlayerId) {
+	updateGameInfo(`Turn: Player ${activePlayerId}`);
+	add(eval(`player${activePlayerId}Box`), "active");
+	remove(eval(`player${inactivePlayerId}Box`), "active");
+	eval(`player${activePlayerId}Start`).play();
+}
+
+function clearBoard() {
+	for (var i = 0; i < positions.length; i++) {
+		var gridId = eval(positions[i]);
+		gridId.innerText = "";
+	}
 }
