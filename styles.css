@@ -92,7 +92,7 @@ main {
 	justify-content: center;
 	height: 16%;
 	align-items: center;
-	font-size: 3vh;
+	font-size: 160%;
 }
 
 .tic-tac-box {
@@ -188,4 +188,58 @@ button:hover {
 	1%, 20% {transform: translate(-1px, 0);}
 	1%, 20% {transform: translate(-1px, 0);}
 	62% {transform: translate(-10px, 2px) skew(15deg);}
+}
+
+@media screen and (max-width: 1260px) {
+	.player-box {
+		width: 25%;
+	}
+
+	.center-box {
+		width: 50%;
+	}
+	.game-title {
+		font-size: 150%;
+	}
+
+}
+
+@media screen and (max-width: 980px) {
+	.player-box {
+		width: 25%;
+	}
+
+	.center-box {
+		width: 50%;
+	}
+
+	.game-title {
+		font-size: 140%;
+	}
+
+	.tic-tac-box {
+		grid-template-columns: repeat(3, 15vw [col-start]);
+		grid-template-rows: repeat(3, 18vh [row-start]);
+	}
+
+}
+
+@media screen and (max-width: 800px) {
+	.player-box {
+		width: 25%;
+	}
+
+	.center-box {
+		width: 50%;
+	}
+
+	.game-title {
+		font-size: 120%;
+	}
+
+	.tic-tac-box {
+		grid-template-columns: repeat(3, 15vw [col-start]);
+		grid-template-rows: repeat(3, 16vh [row-start]);
+	}
+
 }
