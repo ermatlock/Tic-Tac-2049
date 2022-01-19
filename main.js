@@ -38,7 +38,6 @@ function remove(element, selector) {
 }
 
 function updateGameInfo(string) {
-	console.log(`Player ${player.id} WINS!`)
 	gameInfo.innerText = string;
 }
 
@@ -64,19 +63,19 @@ function takeTurn(e) {
 // 	}
 // }
 
-function changePlayer() {
-	if (currentGame.currentPlayer === 1) {
-		updateGameInfo("Turn: Player 2");
-		add(player2Box, "active");
-		remove(player1Box, "active");
-		currentGame.currentPlayer = 2;
-	} else if (currentGame.currentPlayer === 2) {
-		updateGameInfo("Turn: Player 1");
-		add(player1Box, "active");
-		remove(player2Box, "active");
-		currentGame.currentPlayer = 1;
-	}
-}
+// function changePlayer() {
+// 	if (currentGame.currentPlayer === 1) {
+// 		updateGameInfo("Turn: Player 2");
+// 		add(player2Box, "active");
+// 		remove(player1Box, "active");
+// 		currentGame.currentPlayer = 2;
+// 	} else if (currentGame.currentPlayer === 2) {
+// 		updateGameInfo("Turn: Player 1");
+// 		add(player1Box, "active");
+// 		remove(player2Box, "active");
+// 		currentGame.currentPlayer = 1;
+// 	}
+// }
 
 function placeToken(player, position) {
 	eval(position)["innerHTML"] = `<h1 class="glitch">${player.token}</h1>`;
@@ -123,7 +122,7 @@ function checkForDraw() {
 		updateGameInfo("DRAW!");
 		ticTacBox.classList.add("block-clicks");
 		draw.play();
-		nextGame();
+		currentGame.nextGame();
 	}
 }
 
