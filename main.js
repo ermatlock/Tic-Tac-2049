@@ -1,9 +1,11 @@
 /*~~~~~~~~~~~~~~QUERY SELECTORS~~~~~~~~~~~~~~~~~~*/
-const gameInfo = document.getElementById("gameInfo");
-const player1Wins = document.getElementById("player1Wins");
-const player2Wins = document.getElementById("player2Wins");
-const ticTacBox = document.getElementById("ticTacBox");
-const playButton = document.getElementById("playButton");
+var gameInfo = document.getElementById("gameInfo");
+var player1Box = document.getElementById("p1");
+var player2Box = document.getElementById("p2");
+var player1Wins = document.getElementById("player1Wins");
+var player2Wins = document.getElementById("player2Wins");
+var ticTacBox = document.getElementById("ticTacBox");
+var playButton = document.getElementById("playButton");
 
 /*~~~~~~~~~~~~~~EVENT LISTENERS~~~~~~~~~~~~~~~~~~*/
 ticTacBox.addEventListener("click", function(e) {
@@ -15,23 +17,42 @@ playButton.addEventListener("click", playMusic);
 function playMusic() {
 	if (playButtonStatus === false) {
 		playButton.innerText = "MUSIC ON";
+		remove(playButton, "button-off");
 		playButtonStatus = true;
 		backgroundMusic.play();
 		backgroundMusic.loop = true;
 	} else {
 		playButton.innerText = "MUSIC OFF";
+		add(playButton, "button-off");
 		playButtonStatus = false;
 		backgroundMusic.pause();
 	}
 }
+
+function add(element, selector) {
+	element.classList.add(selector);
+}
+
+function remove(element, selector) {
+	element.classList.remove(selector);
+}
+
+function updateGameInfo(string) {
+	gameInfo.innerText = string;
+}
+
 /*~~~~~~~~~~~~~~~~~~GAME FUNCTIONS~~~~~~~~~~~~~~~~~~~~*/
 function takeTurn(e) {
 	if (currentGame.currentPlayer === 1) {
-		gameInfo.innerText = "Turn: Player 2";
+		updateGameInfo("Turn: Player 2");
+		add(player2Box, "active");
+		remove(player1Box, "active");
 		currentGame.currentPlayer = 2;
 		choosePosition(player1, e.target.id);
 	} else if (currentGame.currentPlayer === 2) {
-		gameInfo.innerText = "Turn: Player 1";
+		updateGameInfo("Turn: Player 1");
+		add(player1Box, "active");
+		remove(player2Box, "active");
 		currentGame.currentPlayer = 1;
 		choosePosition(player2, e.target.id);
 	}
@@ -54,24 +75,11 @@ function placeToken(player, position) {
 }
 
 function checkWinOrDraw(player) {
-	check1 = checkWinStates(player, winStates1);
-	check2 = checkWinStates(player, winStates2);
-	check3 = checkWinStates(player, winStates3);
-	check4 = checkWinStates(player, winStates4);
-	check5 = checkWinStates(player, winStates5);
-	check6 = checkWinStates(player, winStates6);
-	check7 = checkWinStates(player, winStates7);
-	check8 = checkWinStates(player, winStates8);
-	if (
-		check1 ||
-		check2 ||
-		check3 ||
-		check4 ||
-		check5 ||
-		check6 ||
-		check7 ||
-		check8
-	) {
+	for (var k = 1; k < 9; k++) {
+		winState = eval(`winState${k}`);
+		checkWinStates(player, winState);
+	}
+	if (player.winner) {
 		logWin(player);
 	} else {
 		checkForDraw();
@@ -84,19 +92,18 @@ function checkWinStates(player, winState) {
 		for (var j = 0; j < winState.length; j++) {
 			if (player.choices[i] === winState[j]) {
 				matches.push(player.choices[i]);
+				console.log(matches);
 			}
 		}
 	}
 	if (matches.length === 3) {
-		return true;
-	} else {
-		return false;
+		player.winner = true;
 	}
 }
 
 function logWin(player) {
-	player.wins++;
-	gameInfo.innerText = `Player ${player.id} WINS!`;
+	player.addWins();
+	updateGameInfo(`Player ${player.id} WINS!`);
 	ticTacBox.classList.add("block-clicks");
 	var playerWins = new Audio(`./assets/sfx/player-${player.id}-wins.mp3`);
 	playerWins.play();
@@ -105,9 +112,9 @@ function logWin(player) {
 
 function checkForDraw() {
 	if (currentGame.positions.length === 0) {
-		gameInfo.innerText = `DRAW!`;
-		draw.play();
+		updateGameInfo("DRAW!");
 		ticTacBox.classList.add("block-clicks");
+		draw.play();
 		nextGame();
 	}
 }
@@ -119,37 +126,24 @@ function updateWins() {
 
 function nextGame() {
 	setTimeout(function() {
-		ticTacBox.classList.remove("block-clicks");
 		currentGame.resetGame();
+		currentGame.switchStartingPlayer();
+		ticTacBox.classList.remove("block-clicks");
 		clearBoard();
 		updateWins();
-		switchStartingPlayer();
 	}, 3500);
 }
 
-function switchStartingPlayer() {
-	if (currentGame.startingPlayer === 1) {
-		currentGame.startingPlayer = 2;
-		gameInfo.innerText = "Turn: Player 2";
-		currentGame.currentPlayer = 2;
-		player2Start.play();
-	} else {
-		currentGame.startingPlayer = 1;
-		gameInfo.innerText = "Turn: Player 1";
-		currentGame.currentPlayer = 1;
-		player1Start.play();
-	}
+function switchPlayerView(activePlayerId, inactivePlayerId) {
+	updateGameInfo(`Turn: Player ${activePlayerId}`);
+	add(eval(`player${activePlayerId}Box`), "active");
+	remove(eval(`player${inactivePlayerId}Box`), "active");
+	eval(`player${activePlayerId}Start`).play();
 }
 
 function clearBoard() {
-	gameInfo.innerText = `Turn: Player ${currentGame.startingPlayer}`;
-	a1.innerText = "";
-	a2.innerText = "";
-	a3.innerText = "";
-	b1.innerText = "";
-	b2.innerText = "";
-	b3.innerText = "";
-	c1.innerText = "";
-	c2.innerText = "";
-	c3.innerText = "";
+	for (var i = 0; i < positions.length; i++) {
+		var gridId = eval(positions[i]);
+		gridId.innerText = "";
+	}
 }
