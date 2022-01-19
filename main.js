@@ -44,16 +44,8 @@ function updateGameInfo(string) {
 /*~~~~~~~~~~~~~~~~~~GAME FUNCTIONS~~~~~~~~~~~~~~~~~~~~*/
 function takeTurn(e) {
 	if (currentGame.currentPlayer === 1) {
-		updateGameInfo("Turn: Player 2");
-		add(player2Box, "active");
-		remove(player1Box, "active");
-		currentGame.currentPlayer = 2;
 		choosePosition(player1, e.target.id);
 	} else if (currentGame.currentPlayer === 2) {
-		updateGameInfo("Turn: Player 1");
-		add(player1Box, "active");
-		remove(player2Box, "active");
-		currentGame.currentPlayer = 1;
 		choosePosition(player2, e.target.id);
 	}
 }
@@ -66,7 +58,22 @@ function choosePosition(player, position) {
 			placeToken(player, position);
 			bleep.play();
 			checkWinOrDraw(player);
+			changePlayer()
 		}
+	}
+}
+
+function changePlayer() {
+	if (currentGame.currentPlayer === 1) {
+		updateGameInfo("Turn: Player 2");
+		add(player2Box, "active");
+		remove(player1Box, "active");
+		currentGame.currentPlayer = 2;
+	} else if (currentGame.currentPlayer === 2) {
+		updateGameInfo("Turn: Player 1");
+		add(player1Box, "active");
+		remove(player2Box, "active");
+		currentGame.currentPlayer = 1;
 	}
 }
 
