@@ -16,6 +16,7 @@ The theme: A 16 bit 80's arcade game, complete with original music and sound eff
 - Responsive design: no portrait mode, but game scales across different aspect ratios.
 
 ## Instructions
+
 You can view the site [here](https://ermatlock.github.io/Tic-Tac-Toe/)
 
 To download the repository:
