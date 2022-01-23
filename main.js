@@ -47,8 +47,8 @@ function takeTurn(e) {
 		currentGame.choosePosition(player1, e.target.id);
 	} else if (currentGame.currentPlayer === 2) {
 		currentGame.choosePosition(player2, e.target.id);
-	}
-}
+  }
+}  
 
 function placeToken(player, position) {
 	var currentPosition = eval(position);
