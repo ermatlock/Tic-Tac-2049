@@ -2,7 +2,17 @@ class Game {
 	constructor(player1, player2) {
 		this.player1 = new Player(1, "X");
 		this.player2 = new Player(2, "O");
-		this.currentPositions = ["a1", "a2", "a3", "b1", "b2", "b3", "c1", "c2", "c3"];
+		this.currentPositions = [
+			"a1",
+			"a2",
+			"a3",
+			"b1",
+			"b2",
+			"b3",
+			"c1",
+			"c2",
+			"c3"
+		];
 		this.currentPlayer = 1;
 		this.startingPlayer = 1;
 		this.winStates = [
@@ -13,22 +23,21 @@ class Game {
 			["a2", "b2", "c2"],
 			["a3", "b3", "c3"],
 			["a1", "b2", "c3"],
-			["c1", "b2", "a3"],
+			["c1", "b2", "a3"]
 		];
 	}
 
 	changePlayer() {
-		console.log('changePlayer')
 		if (this.currentPlayer === 1) {
 			updateGameInfo("Turn: Player 2");
 			add(player2Box, "active");
 			remove(player1Box, "active");
-			currentGame.currentPlayer = 2;
+			this.currentPlayer = 2;
 		} else {
 			updateGameInfo("Turn: Player 1");
 			add(player1Box, "active");
 			remove(player2Box, "active");
-			currentGame.currentPlayer = 1;
+			this.currentPlayer = 1;
 		}
 	}
 
@@ -46,20 +55,17 @@ class Game {
 	}
 
 	checkWinOrDraw(player) {
-		console.log('checkWinOrDraw')
 		for (var k = 0; k < this.winStates.length; k++) {
-// 			winState = eval(`winStates${k}`);
 			this.checkWinStates(player, this.winStates[k]);
 		}
 		if (player.winner) {
-			logWin(player);
+			this.logWin(player);
 		} else {
-			checkForDraw();
+			this.checkForDraw();
 		}
 	}
 
 	checkWinStates(player, winState) {
-		console.log('checkWinStates')
 		var matches = [];
 		for (var i = 0; i < player.choices.length; i++) {
 			for (var j = 0; j < winState.length; j++) {
@@ -73,23 +79,30 @@ class Game {
 		}
 	}
 
+	logWin(player) {
+		player.addWins();
+		updateGameInfo(`Player ${player.id} WINS!`);
+		add(ticTacBox, "block-clicks");
+		var currentWinner = eval(`player${player.id}Wins`);
+		var playerWins = new Audio(`./assets/sfx/player-${player.id}-wins.mp3`);
+		playerWins.play();
+		this.nextGame();
+	}
 
 	checkForDraw() {
 		if (this.currentPositions.length === 0) {
 			updateGameInfo("DRAW!");
-			ticTacBox.classList.add("block-clicks");
+			add(ticTacBox, "block-clicks");
 			draw.play();
 			this.nextGame();
 		}
 	}
 
-
-
 	nextGame() {
 		setTimeout(function() {
 			this.currentGame.resetGame();
 			this.currentGame.switchStartingPlayer();
-			ticTacBox.classList.remove("block-clicks");
+			remove(ticTacBox, "block-clicks");
 			clearBoard();
 			updateWins();
 		}, 3500);
@@ -112,7 +125,16 @@ class Game {
 		this.player2.choices = [];
 		this.player1.winner = false;
 		this.player2.winner = false;
-		this.currentPositions = ["a1", "a2", "a3", "b1", "b2", "b3", "c1", "c2", "c3"];
+		this.currentPositions = [
+			"a1",
+			"a2",
+			"a3",
+			"b1",
+			"b2",
+			"b3",
+			"c1",
+			"c2",
+			"c3"
+		];
 	}
-
 }
