@@ -180,7 +180,7 @@ button:hover {
 @keyframes glitchTop {
 	1%, 20% {transform: translate(1px, -1px);}
 	2%, 20% {transform: translate(-1px, 1px);}
-	20s% {transform: translate(5px, -1px) skew(-10deg);}
+	20% {transform: translate(5px, -1px) skew(-10deg);}
 }
 
 @keyframes glitchBotom {
