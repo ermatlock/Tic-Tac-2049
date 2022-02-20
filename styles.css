@@ -208,7 +208,7 @@ button:hover {
   pointer-events: none;
 }
 
-/* ~~~~~~~~~~~~~GLITCH EFFECT~~~~~~~~~~~~~~~~~ */
+/* ~~~~~~~~~~~~~EFFECTS~~~~~~~~~~~~~~~~~ */
 .crt::before {
   content: " ";
   display: block;
