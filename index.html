@@ -1,86 +1,94 @@
-<!doctype html>
+<!DOCTYPE html>
 
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tic-Tac-2049</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+    </style>
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    /> -->
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
 
-	<title>Tic-Tac-2049</title>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="./styles.css">
+  <body>
+    <main class="crt">
+      <section class="player-box active" id="p1">
+        <div class="player">
+          <h1>Player 1</h1>
+          <h1 class="token">X</h1>
+          <h3>WINS:</h3>
+          <h2 id="player1Wins">0</h2>
+        </div>
+      </section>
+      <div class="center-box">
+        <section class="game-title">
+          <h1>TIC-TAC-2049</h1>
+        </section>
+        <section class="turn">
+          <h1 id="gameInfo">Turn: Player 1</h1>
+        </section>
+        <div class="start-box">
+          <h2>LET'S PLAY!</h2>
+          <button type="button" name="start-button" id="startButton">
+            START!
+          </button>
+        </div>
+        <section class="tic-tac-box" id="ticTacBox">
+          <div class="grid" id="a1">
+            <!-- insert player token here -->
+          </div>
+          <div class="grid" id="a2">
+            <!-- insert player token here -->
+          </div>
+          <div class="grid" id="a3">
+            <!-- insert player token here -->
+          </div>
+          <div class="grid" id="b1">
+            <!-- insert player token here -->
+          </div>
+          <div class="grid" id="b2">
+            <!-- insert player token here -->
+          </div>
+          <div class="grid" id="b3">
+            <!-- insert player token here -->
+          </div>
+          <div class="grid" id="c1">
+            <!-- insert player token here -->
+          </div>
+          <div class="grid" id="c2">
+            <!-- insert player token here -->
+          </div>
+          <div class="grid" id="c3">
+            <!-- insert player token here -->
+          </div>
+        </section>
+        <section class="button-box">
+          <button class="button-off" id="playButton" type="button" name="MUSIC">
+            MUSIC OFF
+          </button>
+        </section>
+      </div>
+      <section class="player-box" id="p2">
+        <div class="player">
+          <h1>Player 2</h1>
+          <h1 class="token">O</h1>
+          <h3>WINS:</h3>
+          <h2 id="player2Wins">0</h2>
+        </div>
+      </section>
+    </main>
 
-</head>
-
-<body>
-	<main class="scan-lines">
-		<section class="player-box active" id=p1>
-			<div class="player">
-				<h1>Player 1</h1>
-				<h1 class="token">X</h1>
-				<h3>WINS:</h3>
-				<h2 id="player1Wins">0</h2>
-			</div>
-		</section>
-		<div class="center-box">
-			<section class="game-title">
-				<h1>TIC-TAC-2049</h1>
-			</section>
-			<section class="turn">
-				<h1 id="gameInfo">Turn: Player 1</h1>
-			</section>
-			<section class="tic-tac-box" id="ticTacBox">
-				<div class="grid" id="a1">
-					<!-- insert player token here -->
-				</div>
-				<div class="grid" id="a2">
-					<!-- insert player token here -->
-				</div>
-				<div class="grid" id="a3">
-					<!-- insert player token here -->
-				</div>
-				<div class="grid" id="b1">
-					<!-- insert player token here -->
-				</div>
-				<div class="grid" id="b2">
-					<!-- insert player token here -->
-				</div>
-				<div class="grid" id="b3">
-					<!-- insert player token here -->
-				</div>
-				<div class="grid" id="c1">
-					<!-- insert player token here -->
-				</div>
-				<div class="grid" id="c2">
-					<!-- insert player token here -->
-				</div>
-				<div class="grid" id="c3">
-					<!-- insert player token here -->
-				</div>
-			</section>
-			<section class="button-box">
-				<button class='button-off' id="playButton" type="button" name="MUSIC">MUSIC OFF
-				</button>
-			</section>
-		</div>
-		<section class="player-box" id=p2>
-			<div class="player">
-				<h1>Player 2</h1>
-				<h1 class="token">O</h1>
-				<h3>WINS:</h3>
-				<h2 id="player2Wins">0</h2>
-			</div>
-		</section>
-	</main>
-
-
-	<script src="./Player.js"></script>
-	<script src="./Game.js"></script>
-	<script src="./data.js"></script>
-	<script src="./main.js"></script>
-
-</body>
-
+    <script src="./Player.js"></script>
+    <script src="./Game.js"></script>
+    <script src="./data.js"></script>
+    <script src="./main.js"></script>
+  </body>
 </html>
