@@ -2,302 +2,460 @@
   Josh's Custom CSS Reset
   https://www.joshwcomeau.com/css/custom-css-reset/
 */
-*, *::before, *::after {
-	box-sizing: border-box;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 * {
-	margin: 0;
+  margin: 0;
 }
 
-html, body, main {
-	height: 100%;
-	font-family: 'Press Start 2P', cursive;
+html,
+body,
+main {
+  height: 100%;
+  font-family: "Press Start 2P", cursive;
 }
 
 body {
-	line-height: 1.5;
-	-webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+  font-display: fallback;
+  -webkit-font-smoothing: antialiased;
 }
 
-img, picture, video, canvas, svg {
-	display: block;
-	max-width: 100%;
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
 }
 
-input, button, textarea, select {
-	font: inherit;
+input,
+button,
+textarea,
+select {
+  font: inherit;
 }
 
-p, h1, h2, h3, h4, h5, h6 {
-	text-align: center;
-	overflow-wrap: break-word;
-	color: #65f7ff;
-	text-shadow: 0px 0px 8px #7faefa, 0px 0px 18px #6ad0f8;
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-align: center;
+  overflow-wrap: break-word;
+  color: #8bf5fb;
+  text-shadow: 0px 0px 8px #a3c2f3, 0px 0px 18px #89deff;
 }
 
-#root, #__next {
-	isolation: isolate;
+#root,
+#__next {
+  isolation: isolate;
 }
 
 .hidden {
-	display: none !important;
+  display: none !important;
 }
 /* ~~~~~~~~~~~~~~~END RESET~~~~~~~~~~~~~~~ */
 
 /* ~~~~~~~~~~~~~~~~LAYOUT~~~~~~~~~~~~~~~~~ */
 main {
-	display: flex;
-	justify-content: center;
-	background: repeating-linear-gradient(transparent, transparent 2px, black 3px, black 3px), url(assets/images/4910984.gif);
-	background-size: auto 100%;
-	background-position: center center;
-	opacity: 1;
+  display: flex;
+  justify-content: center;
+  background: url(assets/images/4910984.gif);
+  background-size: auto 100%;
+  background-position: center center;
+  opacity: 1;
 }
 
 /* ~~~~~~~~~LAYOUT: PLAYER SECTIONS~~~~~~~~ */
 .player-box {
-	width: 30%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	background-color: rgb(59 13 110 / 40%);
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(59 13 110 / 40%);
 }
 
 .player {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: space-evenly;
-	height: 43%;
-	margin-top: 4%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 43%;
+  margin-top: 4%;
 }
 
 .active {
-	background-color: rgb(81 34 133 / 62%);
+  background-color: rgb(81 34 133 / 62%);
 }
 
 .token {
-	font-size: 7vh;
+  font-size: 7vh;
 }
 
 .center-box {
-	width: 40%;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	box-shadow:
-		0 0 5px 5px #fff;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 5px 5px #fff;
 }
 
 /* ~~~~~~~~~~~~~CENTER SECTIONS~~~~~~~~~~~~~~~~~ */
 .game-title {
-	display: flex;
-	justify-content: center;
-	height: 16%;
-	align-items: center;
-	font-size: 160%;
+  display: flex;
+  justify-content: center;
+  height: 16%;
+  align-items: center;
+  font-size: 160%;
 }
 
 .tic-tac-box {
-	display: grid;
-	grid-template-columns: repeat(3, 20vh [col-start]);
-	grid-template-rows: repeat(3, 20vh [row-start]);
-	justify-items: center;
-	align-items: center;
-	box-shadow: 0 0 4px 2px #fff;
+  display: grid;
+  grid-template-columns: repeat(3, 20vh [col-start]);
+  grid-template-rows: repeat(3, 20vh [row-start]);
+  justify-items: center;
+  align-items: center;
+  box-shadow: 0 0 4px 2px #fff;
 }
 
 .grid {
-	display: flex;
-	width: 100%;
-	height: 100%;
-	border-style: solid;
-	border-color: rgb(0 249 255 / 72%);
-	justify-content: center;
-	align-items: center;
-	font-size: 10vh;
-	color: #b2f4ff;
-	background-color: rgb(50 111 238 / 43%);
+  display: flex;
+  width: 100%;
+  height: 100%;
+  border-style: solid;
+  border-color: rgb(0 249 255 / 72%);
+  justify-content: center;
+  align-items: center;
+  font-size: 10vh;
+  color: #b2f4ff;
+  background-color: rgb(50 111 238 / 43%);
 }
 
 .grid:hover {
-	background-color: rgba(50, 111, 238, 70%);
-	box-shadow: 0 0 5px 5px #fff;
-	cursor: pointer;
+  background-color: rgba(50, 111, 238, 70%);
+  box-shadow: 0 0 5px 5px #fff;
+  cursor: pointer;
 }
 
 .grid-token {
-	align-self: center;
-	font-size: 162%;
-	padding-left: 8%;
-	padding-top: 8%;
+  align-self: center;
+  font-size: 162%;
+  padding-left: 8%;
+  padding-top: 8%;
 }
 
 .button-box {
-	height: 15%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+  height: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 button {
-	height: 8vh;
-	width: 26vh;
-	border-color: rgb(0 249 255 / 72%);
-	background-color: rgb(68 126 247 / 70%);
-	border-style: solid;
-	color: #32f4ff;
-	text-shadow: 0px 0px 8px #7faefa, 0px 0px 18px #6ad0f8;
-	cursor: pointer;
+  height: 8vh;
+  width: 26vh;
+  border-color: rgb(0 249 255 / 72%);
+  background-color: rgb(68 126 247 / 70%);
+  border-style: solid;
+  color: #32f4ff;
+  text-shadow: 0px 0px 8px #7faefa, 0px 0px 18px #6ad0f8;
+  cursor: pointer;
+}
+
+.start-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  z-index: 100;
+  position: absolute;
+  width: 30vw;
+  height: 41vh;
+  background-color: rgb(0 67 255 / 55%);
+  box-shadow: 0px 0px 10px 7px rgb(163 236 250 / 65%);
+  font-size: larger;
+  border-style: solid;
+  border-width: 5px;
+  border-radius: 9px;
+  border-color: rgb(239 239 255 / 91%);
 }
 
 .button-off {
-	background-color: rgb(39 79 161 / 70%);
-	color: #3ca2a7;
+  background-color: rgb(39 79 161 / 70%);
+  color: #3ca2a7;
 }
 
 button:hover {
-	background-color: rgb(123 166 255 / 73%);
-	box-shadow: 0 0 5px 5px #fff;
-	color: white;
+  background-color: rgb(123 166 255 / 73%);
+  box-shadow: 0 0 5px 5px #fff;
+  color: white;
 }
 
 .turn {
-	height: 9%;
+  height: 9%;
 }
 
 .block-clicks {
-	pointer-events: none
+  pointer-events: none;
 }
 
 /* ~~~~~~~~~~~~~GLITCH EFFECT~~~~~~~~~~~~~~~~~ */
+.crt::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(
+    0deg,
+    rgb(0 0 0),
+    rgb(0 0 0 / 0%),
+    rgb(0 0 0 / 0%)
+  );
+  z-index: 150;
+  background-size: 100% 0.3%, 0px 100%;
+  pointer-events: none;
+}
+
+@keyframes flicker {
+  0% {
+    opacity: 0.27861;
+  }
+  5% {
+    opacity: 0.34769;
+  }
+  10% {
+    opacity: 0.23604;
+  }
+  15% {
+    opacity: 0.90626;
+  }
+  20% {
+    opacity: 0.18128;
+  }
+  25% {
+    opacity: 0.83891;
+  }
+  30% {
+    opacity: 0.65583;
+  }
+  35% {
+    opacity: 0.67807;
+  }
+  40% {
+    opacity: 0.26559;
+  }
+  45% {
+    opacity: 0.84693;
+  }
+  50% {
+    opacity: 0.96019;
+  }
+  55% {
+    opacity: 0.08594;
+  }
+  60% {
+    opacity: 0.20313;
+  }
+  65% {
+    opacity: 0.71988;
+  }
+  70% {
+    opacity: 0.53455;
+  }
+  75% {
+    opacity: 0.37288;
+  }
+  80% {
+    opacity: 0.71428;
+  }
+  85% {
+    opacity: 0.70419;
+  }
+  90% {
+    opacity: 0.7003;
+  }
+  95% {
+    opacity: 0.36108;
+  }
+  100% {
+    opacity: 0.24387;
+  }
+}
+
+.crt::after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(18, 16, 16, 0.1);
+  opacity: 0;
+  z-index: 2;
+  pointer-events: none;
+  animation: flicker 0.15s infinite;
+}
+
 .glitch {
-	animation: glitch 1s linear infinite;
+  animation: glitch 1s linear infinite;
 }
 
 @keyframes glitch {
-	2%, 64% { transform: translate(1px, 0) skew(0deg);}
-	4%, 60% { transform: translate(-1px, 0) skew(0deg);}
-	62% { transform: translate(0, 0) skew(5deg);}
+  2%,
+  64% {
+    transform: translate(1px, 0) skew(0deg);
+  }
+  4%,
+  60% {
+    transform: translate(-1px, 0) skew(0deg);
+  }
+  62% {
+    transform: translate(0, 0) skew(5deg);
+  }
 }
 
 @keyframes glitchTop {
-	1%, 20% {transform: translate(1px, -1px);}
-	2%, 20% {transform: translate(-1px, 1px);}
-	20% {transform: translate(5px, -1px) skew(-10deg);}
+  1%,
+  20% {
+    transform: translate(1px, -1px);
+  }
+  2%,
+  20% {
+    transform: translate(-1px, 1px);
+  }
+  20% {
+    transform: translate(5px, -1px) skew(-10deg);
+  }
 }
 
 @keyframes glitchBotom {
-	1%, 20% {transform: translate(-1px, 0);}
-	1%, 20% {transform: translate(-1px, 0);}
-	62% {transform: translate(-10px, 2px) skew(15deg);}
+  1%,
+  20% {
+    transform: translate(-1px, 0);
+  }
+  1%,
+  20% {
+    transform: translate(-1px, 0);
+  }
+  62% {
+    transform: translate(-10px, 2px) skew(15deg);
+  }
 }
-
 
 /* ~~~~~~~~~~~~~MEDIA QUERIES~~~~~~~~~~~~~~~~~ */
 @media screen and (orientation: portrait) and (max-width: 980px) {
-	main {
-		flex-direction: column;
-		align-items: center;
-}
-	.player-box {
-		display:  flex;
-		width: 100%;
-		height: 13%;
-		flex-direction: row;
-	}
+  main {
+    flex-direction: column;
+    align-items: center;
+  }
+  .player-box {
+    display: flex;
+    width: 100%;
+    height: 13%;
+    flex-direction: row;
+  }
 
-	.player {
-		display: flex;
-		flex-direction: row;
-		width: 100%;
-		justify-content: space-around;
-		align-items: center;
-	}
+  .player {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+  }
 
-	.center-box {
-		width: 100%;
-		height: 74%;
-	}
+  .center-box {
+    width: 100%;
+    height: 74%;
+  }
 
-	.game-title {
-		font-size: 120%;
-	}
+  .game-title {
+    font-size: 120%;
+  }
 
-	.tic-tac-box {
-		grid-template-columns: repeat(3, 17vh [col-start]);
-		grid-template-rows: repeat(3, 17vh [row-start]);
-	}
+  .tic-tac-box {
+    grid-template-columns: repeat(3, 17vh [col-start]);
+    grid-template-rows: repeat(3, 17vh [row-start]);
+  }
 
-	.grid-token {
-		align-self: center;
-		font-size: 128%;
-		padding-left: 10%;
-		padding-top: 10%;
-	}
+  .grid-token {
+    align-self: center;
+    font-size: 128%;
+    padding-left: 10%;
+    padding-top: 10%;
+  }
 
-	.button-box {
-		height: 12%;
-		align-items: center;
-		justify-content: center;
-	}
+  .button-box {
+    height: 12%;
+    align-items: center;
+    justify-content: center;
+  }
 
-	button {
-		height: 5vh;
-		width: 26vh;
-	}
+  button {
+    height: 5vh;
+    width: 26vh;
+  }
 }
 
 @media screen and (orientation: landscape) and (max-width: 1240px) {
-	main {
-		flex-direction: column;
-		align-items: center;
-}
-	.player-box {
-		width: 100%;
-		height: 13%;
-		flex-direction: row;
-		justify-content: space-evenly;
-	}
+  main {
+    flex-direction: column;
+    align-items: center;
+  }
+  .player-box {
+    width: 100%;
+    height: 13%;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
 
-	.player {
-		flex-direction: row;
-		width: 100%;
-	}
+  .player {
+    flex-direction: row;
+    width: 100%;
+  }
 
-	.center-box {
-		width: 100%;
-		height: 74%;
-	}
+  .center-box {
+    width: 100%;
+    height: 74%;
+  }
 
-	.game-title {
-		font-size: 120%;
-	}
+  .game-title {
+    font-size: 120%;
+  }
 
-	.tic-tac-box {
-		grid-template-columns: repeat(3, 17vh [col-start]);
-		grid-template-rows: repeat(3, 17vh [row-start]);
-	}
+  .tic-tac-box {
+    grid-template-columns: repeat(3, 17vh [col-start]);
+    grid-template-rows: repeat(3, 17vh [row-start]);
+  }
 
-	.grid-token {
-		align-self: center;
-		font-size: 128%;
-		padding-left: 10%;
-		padding-top: 10%;
-	}
+  .grid-token {
+    align-self: center;
+    font-size: 128%;
+    padding-left: 10%;
+    padding-top: 10%;
+  }
 
-	.button-box {
-		height: 12%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
+  .button-box {
+    height: 12%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
-	button {
-		height: 5vh;
-		width: 26vh;
-	}
-
+  button {
+    height: 5vh;
+    width: 26vh;
+  }
 }
