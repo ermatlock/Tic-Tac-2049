@@ -17,7 +17,7 @@ The theme: A 16 bit 80's arcade game, complete with original music and sound eff
 
 ## Instructions
 
-You can view the site [here](https://ermatlock.github.io/Tic-Tac-Toe/)
+You can view the site [here](https://ermatlock.github.io/Tic-Tac-2049/)
 
 To download the repository:
 - Clone the [repository](https://github.com/ermatlock/Tic-Tac-Toe) to your local machine
