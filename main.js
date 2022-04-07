@@ -1,13 +1,13 @@
 /*~~~~~~~~~~~~~~QUERY SELECTORS~~~~~~~~~~~~~~~~~~*/
-const gameInfo = document.getElementById("gameInfo");
-const player1Box = document.getElementById("p1");
-const player2Box = document.getElementById("p2");
-const player1Wins = document.getElementById("player1Wins");
-const player2Wins = document.getElementById("player2Wins");
-const ticTacBox = document.getElementById("ticTacBox");
-const playButton = document.getElementById("playButton");
-const startButton = document.getElementById("startButton");
-const startBox = document.querySelector(".start-box");
+var gameInfo = document.getElementById("gameInfo");
+var player1Box = document.getElementById("p1");
+var player2Box = document.getElementById("p2");
+var player1Wins = document.getElementById("player1Wins");
+var player2Wins = document.getElementById("player2Wins");
+var ticTacBox = document.getElementById("ticTacBox");
+var playButton = document.getElementById("playButton");
+var startButton = document.getElementById("startButton");
+var startBox = document.querySelector(".start-box");
 
 /*~~~~~~~~~~~~~~EVENT LISTENERS~~~~~~~~~~~~~~~~~~*/
 ticTacBox.addEventListener("click", function (e) {
