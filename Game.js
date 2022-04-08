@@ -105,7 +105,7 @@ class Game {
 			remove(ticTacBox, "block-clicks");
 			clearBoard();
 			updateWins();
-		}, 3500);
+		}, 3000);
 	}
 
 	switchStartingPlayer() {
