@@ -19,6 +19,7 @@ startButton.addEventListener("click", startGame);
 /*~~~~~~~~~~~~~~~~~~FUNCTIONS~~~~~~~~~~~~~~~~~~~~*/
 window.onload = () => {
   add(ticTacBox, "block-clicks");
+  add(playButton, "block-clicks")
 };
 
 function add(element, selector) {
@@ -31,6 +32,7 @@ function remove(element, selector) {
 
 function startGame() {
   remove(ticTacBox, "block-clicks");
+  remove(playButton, "block-clicks")
   add(startBox, "hidden");
   player1Start.play();
   playMusic();
