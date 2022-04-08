@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Tic-Tac-2049</title>
-    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <link rel="icon" type="image/x-icon" href="./favicon.ico" />
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
     </style>
@@ -20,21 +20,12 @@
         <div class="player">
           <h1 class="margin-sides">Player 1</h1>
           <h1 class="token margin-sides">X</h1>
-          <h3 class="margin-sides" >WINS:</h3>
+          <h3 class="margin-sides">WINS:</h3>
           <h2 class="margin-sides" id="player1Wins">0</h2>
         </div>
       </section>
       <!-- Game Board -->
       <div class="center-box">
-        <div class="title-turn">
-          <section class="game-title">
-            <h1>TIC-TAC-2049</h1>
-          </section>
-          <section class="turn">
-            <h1 id="gameInfo">Turn: Player 1</h1>
-          </section>
-
-        </div>
         <div class="start-box">
           <h2>LET'S PLAY!</h2>
           <button
@@ -46,6 +37,15 @@
             START!
           </button>
         </div>
+        <div class="title-turn">
+          <section class="game-title">
+            <h1>TIC-TAC-2049</h1>
+          </section>
+          <section class="turn">
+            <h1 id="gameInfo">Turn: Player 1</h1>
+          </section>
+        </div>
+        
         <div class="game-and-music-btn">
           <section class="tic-tac-box" id="ticTacBox">
             <div class="grid" id="a1">
@@ -77,11 +77,15 @@
             </div>
           </section>
           <section class="button-box">
-            <button class="button-off" id="playButton" type="button" name="MUSIC">
+            <button
+              class="button-off "
+              id="playButton"
+              type="button"
+              name="MUSIC"
+            >
               MUSIC OFF
             </button>
           </section>
-
         </div>
       </div>
       <!-- Player 2 -->
