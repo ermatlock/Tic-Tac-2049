@@ -8,6 +8,7 @@ var ticTacBox = document.getElementById("ticTacBox");
 var playButton = document.getElementById("playButton");
 var startButton = document.getElementById("startButton");
 var startBox = document.querySelector(".start-box");
+var startText = document.querySelector(".start-text");
 
 /*~~~~~~~~~~~~~~EVENT LISTENERS~~~~~~~~~~~~~~~~~~*/
 ticTacBox.addEventListener("click", function (e) {
@@ -19,7 +20,7 @@ startButton.addEventListener("click", startGame);
 /*~~~~~~~~~~~~~~~~~~FUNCTIONS~~~~~~~~~~~~~~~~~~~~*/
 window.onload = () => {
   add(ticTacBox, "block-clicks");
-  add(playButton, "block-clicks")
+  add(playButton, "block-clicks");
 };
 
 function add(element, selector) {
@@ -32,8 +33,16 @@ function remove(element, selector) {
 
 function startGame() {
   remove(ticTacBox, "block-clicks");
-  remove(playButton, "block-clicks")
+  remove(playButton, "block-clicks");
+  remove(startButton, "scale-in-center");
+  remove(startText, "scale-in-center");
+  add(startButton, "scale-out-center");
+  add(startText, "scale-out-center");
+  add(startBox, "fade-out");
+  setTimeout(function () {
   add(startBox, "hidden");
+  }, 1000);
+  
   player1Start.play();
   playMusic();
 }
