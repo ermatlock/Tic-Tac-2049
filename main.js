@@ -75,9 +75,11 @@ function takeTurn(e) {
   }
 }
 
-function placeToken(player, position) {
+function placeToken  (player, position) {
   var currentPosition = eval(position);
-  currentPosition.innerHTML = `<h1 class="grid-token glitch">${player.token}</h1>`;
+  console.log(player.token)
+  console.log(player.tokenName)
+  currentPosition.innerHTML = `<img class="grid-token glitch" src="${player.token}" alt="token ${player.tokenName}"></img>`;
 }
 
 function updateWins() {
