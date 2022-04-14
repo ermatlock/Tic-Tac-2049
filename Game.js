@@ -1,7 +1,7 @@
 class Game {
 	constructor(player1, player2) {
-		this.player1 = new Player(1, "X");
-		this.player2 = new Player(2, "O");
+		this.player1 = new Player(1, "./assets/images/x-token.svg", "X");
+		this.player2 = new Player(2, "./assets/images/o-token.svg", "O");
 		this.currentPositions = [
 			"a1",
 			"a2",
