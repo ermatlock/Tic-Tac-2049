@@ -16,7 +16,7 @@ html,
 body,
 main {
   height: 100vh;
-  font-family: "Press Start 2P", cursive;
+  font-family: "Press Start 2P";
 }
 
 /* Set core root defaults */
