@@ -66,14 +66,8 @@ class Game {
 	}
 
 	checkWinStates(player, winState) {
-		var matches = [];
-		for (var i = 0; i < player.choices.length; i++) {
-			for (var j = 0; j < winState.length; j++) {
-				if (player.choices[i] === winState[j]) {
-					matches.push(player.choices[i]);
-				}
-			}
-		}
+		const playerChoices = new Set(player.choices);
+		const matches = winState.filter(position => playerChoices.has(position));
 		if (matches.length === 3) {
 			player.winner = true;
 		}
@@ -99,7 +93,7 @@ class Game {
 	}
 
 	nextGame() {
-		setTimeout(function() {
+		setTimeout(function () {
 			this.currentGame.resetGame();
 			this.currentGame.switchStartingPlayer();
 			remove(ticTacBox, "block-clicks");
