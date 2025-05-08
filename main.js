@@ -53,12 +53,10 @@ function playMusic() {
     remove(playButton, "button-off");
     playButtonStatus = true;
 
-    // Resume audio context if it was suspended
     if (audioContext.state === 'suspended') {
       audioContext.resume();
     }
 
-    // Create and start new source
     backgroundMusicSource = audioContext.createBufferSource();
     backgroundMusicSource.buffer = backgroundMusicBuffer;
     backgroundMusicSource.connect(audioContext.destination);
@@ -69,7 +67,6 @@ function playMusic() {
     add(playButton, "button-off");
     playButtonStatus = false;
 
-    // Stop the current source
     if (backgroundMusicSource) {
       backgroundMusicSource.stop();
       backgroundMusicSource = null;
