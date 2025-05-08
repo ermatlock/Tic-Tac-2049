@@ -42,7 +42,7 @@ function startGame() {
   setTimeout(function () {
   add(startBox, "hidden");
   }, 1000);
-  
+
   player1Start.play();
   playMusic();
 }
@@ -52,13 +52,28 @@ function playMusic() {
     playButton.innerText = "MUSIC ON";
     remove(playButton, "button-off");
     playButtonStatus = true;
-    backgroundMusic.play();
-    backgroundMusic.loop = true;
+
+    // Resume audio context if it was suspended
+    if (audioContext.state === 'suspended') {
+      audioContext.resume();
+    }
+
+    // Create and start new source
+    backgroundMusicSource = audioContext.createBufferSource();
+    backgroundMusicSource.buffer = backgroundMusicBuffer;
+    backgroundMusicSource.connect(audioContext.destination);
+    backgroundMusicSource.loop = true;
+    backgroundMusicSource.start(0);
   } else {
     playButton.innerText = "MUSIC OFF";
     add(playButton, "button-off");
     playButtonStatus = false;
-    backgroundMusic.pause();
+
+    // Stop the current source
+    if (backgroundMusicSource) {
+      backgroundMusicSource.stop();
+      backgroundMusicSource = null;
+    }
   }
 }
 
